@@ -1,0 +1,99 @@
+<div class="container mt-4">
+  <h2>Lista de Tarefas
+    <button class="btn btn-primary btn-arredondamento"
+            (click)="openModal()">
+      <i class="fas fa-plus"></i>
+      Nova Tarefa
+    </button>
+  </h2>
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Tarefa</th>
+      <th scope="col">Data Inicio</th>
+      <th scope="col">Status</th>
+      <th>Ações <i class="fas fa-cog"></i></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let t of tarefas; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ t.titulo }}</td>
+      <td>{{ t.datainicio }}</td>
+      <td>{{ t.status }}</td>
+      <td>
+        <button class="btn btn-danger rounded-circle">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+        -
+        <button class="btn btn-warning rounded-circle">
+          <i class="fas fa-edit"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="modal" tabindex="-1" id="add-tarefa">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Adicionar nova tarefa
+        </h5>
+      </div>
+      <form [formGroup]="formularioTarefa"
+            (ngSubmit)="salvarTarefa()">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="mb-3 col-md-12">
+              <label for="tituloTarefa" class="form-label">
+                Título Tarefa
+              </label>
+              <input type="text" class="form-control" id="tituloTarefa" formControlName="tituloTarefa">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="dataInicioTarefa" class="form-label">
+                Data Inicio
+              </label>
+              <input type="datetime-local" class="form-control" id="dataInicioTarefa"
+                     formControlName="dataInicioTarefa">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="dataConclusaoTarefa" class="form-label">
+                Data Inicio
+              </label>
+              <input type="datetime-local" class="form-control" id="dataConclusaoTarefa"
+                     formControlName="dataConclusaoTarefa">
+            </div>
+            <div class="md-3 col-md-12">
+              <label>Status</label>
+              <select class="form-control" formControlName="statusTarefa">
+                <option value="NOVA">NOVA</option>
+                <option value="EM_ANDAMENTO">EM_ANDAMENTO</option>
+                <option value="CONCLUIDO">CONCLUIDO</option>
+              </select>
+            </div>
+            <div class="md-3 col-md-12">
+              <label class="form-check-label">Descrição</label>
+              <textarea class="form-control" formControlName="descricaoTarefa" id="descricaoTarefa" rows="3">
+              </textarea>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" (click)="closeModal()">
+            Fechar
+          </button>
+          <button class="btn btn-success" type="submit">
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

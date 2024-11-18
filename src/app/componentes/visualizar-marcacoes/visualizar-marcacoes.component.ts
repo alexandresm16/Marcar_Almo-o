@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {TarefaService} from "../../app-core/servicos/tarefa-service.service";
-import {Tarefa} from "../../app-core/model/Tarefa";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MarcacaoService} from "../../app-core/servicos/marcacao-service.service";
 import {Marcacao} from "../../app-core/model/Marcacao";

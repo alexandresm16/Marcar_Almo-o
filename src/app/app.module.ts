@@ -10,6 +10,7 @@ import { VisualizarTarefasComponent } from './componentes/visualizar-tarefas/vis
 import {ReactiveFormsModule} from "@angular/forms";
 import { VisualizarMarcacoesComponent } from './componentes/visualizar-marcacoes/visualizar-marcacoes.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,7 @@ import { VisualizarMarcacoesComponent } from './componentes/visualizar-marcacoes
     RodapeComponent,
     PaginaInicialComponent,
     VisualizarTarefasComponent,
-    VisualizarMarcacoesComponent
+    VisualizarMarcacoesComponent,
   ],
   imports: [
     BrowserModule,

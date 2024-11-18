@@ -18,9 +18,6 @@ export class VisualizarTarefasComponent implements OnInit {
 
   formularioTarefa: FormGroup;
 
-
-
-
   constructor(private tarefaService: TarefaService,
               private fb: FormBuilder) {
 

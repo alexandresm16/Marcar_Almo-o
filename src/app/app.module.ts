@@ -9,6 +9,7 @@ import { PaginaInicialComponent } from './componentes/pagina-inicial/pagina-inic
 import { VisualizarTarefasComponent } from './componentes/visualizar-tarefas/visualizar-tarefas.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { VisualizarMarcacoesComponent } from './componentes/visualizar-marcacoes/visualizar-marcacoes.component';
+import { MarcarComponent } from './componentes/marcar/marcar.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { VisualizarMarcacoesComponent } from './componentes/visualizar-marcacoes
     PaginaInicialComponent,
     VisualizarTarefasComponent,
     VisualizarMarcacoesComponent,
+    MarcarComponent,
   ],
   imports: [
     BrowserModule,

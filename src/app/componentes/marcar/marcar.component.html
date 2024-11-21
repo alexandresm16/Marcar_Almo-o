@@ -1,0 +1,43 @@
+<h1 class="text-center mt-4 title text-capitalize">Insira as informações a baixo para realizar a marcação do
+  almoço:</h1>
+
+<div class="mt-5 p-4 container border rounded border-dark back">
+  <form [formGroup]="formularioMarcacao"
+        (ngSubmit)="salvarMarcacao()">
+    <div class="form-row">
+      <div class="mb-3 col-md-12">
+        <label for="nome" class="form-label">
+          <b>Nome:</b>
+        </label>
+        <input type="text" class="form-control" id="nome" formControlName="nome">
+      </div>
+      <div class="mb-3 col-md-6">
+        <label for="setor" class="form-label">
+          <b>Setor:</b>
+        </label>
+        <input type="text" class="form-control" id="setor" formControlName="setor">
+      </div>
+      <div class="mb-3 col-md-6">
+        <label for="ramal" class="form-label">
+          <b>Ramal:</b>
+        </label>
+        <input type="text" class="form-control" id="ramal"
+               formControlName="ramal">
+      </div>
+      <div class="mb-3 col-md-12">
+        <label for="dataInclusao" class="form-label">
+          <b>Data da Inclusão:</b>
+        </label>
+        <input type="datetime-local" class="form-control" id="dataInclusao"
+               formControlName="dataInclusao">
+      </div>
+    </div>
+    <div class="pt-3 text-center">
+      <button class="btn btn-success btn-lg" type="submit">
+        MARCAR
+      </button>
+    </div>
+
+  </form>
+
+</div>

@@ -1,5 +1,4 @@
 import {Cardapio} from "../model/Cardapio";
-import {Marcacao} from "../model/Marcacao";
 import {Injectable} from "@angular/core";
 
 @Injectable({

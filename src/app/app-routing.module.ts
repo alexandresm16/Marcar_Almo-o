@@ -4,6 +4,7 @@ import {PaginaInicialComponent} from "./componentes/pagina-inicial/pagina-inicia
 import {VisualizarTarefasComponent} from "./componentes/visualizar-tarefas/visualizar-tarefas.component";
 import {VisualizarMarcacoesComponent} from "./componentes/visualizar-marcacoes/visualizar-marcacoes.component";
 import {MarcarComponent} from "./componentes/marcar/marcar.component";
+import {CardapioComponent} from "./componentes/cardapio/cardapio.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "pagina-inicial",
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path: "visualizar-tarefas", component: VisualizarTarefasComponent},
   {path: "visualizar-marcacoes", component: VisualizarMarcacoesComponent},
   {path: "marcar", component: MarcarComponent},
+  {path: "cardapio", component: CardapioComponent},
+
 
 ];
 

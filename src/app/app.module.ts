@@ -10,6 +10,7 @@ import { VisualizarTarefasComponent } from './componentes/visualizar-tarefas/vis
 import {ReactiveFormsModule} from "@angular/forms";
 import { VisualizarMarcacoesComponent } from './componentes/visualizar-marcacoes/visualizar-marcacoes.component';
 import { MarcarComponent } from './componentes/marcar/marcar.component';
+import { CardapioComponent } from './componentes/cardapio/cardapio.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MarcarComponent } from './componentes/marcar/marcar.component';
     VisualizarTarefasComponent,
     VisualizarMarcacoesComponent,
     MarcarComponent,
+    CardapioComponent,
   ],
   imports: [
     BrowserModule,

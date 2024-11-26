@@ -22,9 +22,9 @@ export class CardapioService {
       0,
       'Segunda-Feira',
       'Arroz e Lentilha',
-      'bife',
-      'batata',
-      'salada de Tomate'
+      'Bife',
+      'Batata',
+      'Salada de Tomate'
     );
 
     let c2: Cardapio = new Cardapio(
@@ -33,7 +33,7 @@ export class CardapioService {
       'Arroz e Feijão',
       'Frango Assado',
       'Molho',
-      'salada de Alface'
+      'Salada de Alface'
     );
 
     let c3: Cardapio = new Cardapio(
@@ -42,7 +42,7 @@ export class CardapioService {
       'Arroz e Feijão',
       'Peixe',
       'Moranga',
-      'salada de Repolho'
+      'Salada de Repolho'
     );
 
     let c4: Cardapio = new Cardapio(
@@ -51,7 +51,7 @@ export class CardapioService {
       'Arroz e lentilha',
       'bife',
       'Pure de batatas',
-      'salada de tomate'
+      'Salada de tomate'
     );
 
     let c5: Cardapio = new Cardapio(
@@ -69,7 +69,7 @@ export class CardapioService {
       'Arroz e Feijão',
       'Frango frito',
       'Batata assada',
-      'salada de tomate'
+      'Salada de tomate'
     );
 
     let c7: Cardapio = new Cardapio(
@@ -78,7 +78,7 @@ export class CardapioService {
       'Arroz e Feijão',
       'Churrasco',
       'Pão de alho',
-      'salada de tomate'
+      'Salada de tomate'
     );
 
     this.cardapioSemana.push(c1, c2, c3, c4, c5, c6, c7);

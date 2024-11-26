@@ -1,123 +1,45 @@
-<div class="back">
-  <section class="mt-5 py-3 border-bottom border-top border-dark col-md-12">
-    <div class="text-center py-2">
+<div>
+  <section class="border-bottom border-top border-dark col-md-12 back">
+    <div class="pt-5 text-center py-2 col-md-12">
       <h1 class="py-3 text-capitalize">
-        Sistema para marcação de refeição
+        Sistema para agendamento de refeição
       </h1>
       <p class="py-2 lead text-center text-capitalize">
         Bem-vindo ao Sistema de gerenciamento
-        de marcação de refeição!
+        de agendamento de refeição!
       </p>
       <div class="py-4 pb-2">
-        <button class="btn btn-success btn-lg" [routerLink]="'/marcar'">Ir para Marcação</button>
+        <button class="btn btn-success btn-lg" [routerLink]="'/marcar'">Ir para Agendamento</button>
       </div>
-      <p class="py-1 lead text-center text-capitalize">
-        <u>Horario para marcação de almoço 06:00h ás 09:30h.</u>
+      <p class="mt-5 lead text-center text-white text-capitalize">
+        <u>Horario para agendamento de almoço 06:00h ás 09:30h.</u>
       </p>
     </div>
   </section>
 
-  <div class="py-5 col-md-12 row justify-content-center text-center">
+  <section class="border-bottom border-top border-dark col-md-12 back2">
+    <div class="py-5 col-md-12 row justify-content-center text-center">
 
-    <h1 class="pb-2 title col-md-12">Cardapio da semana</h1>
+      <h1 class="pb-2 title col-md-12">Cardapio da semana</h1>
 
-    <div class="m-2">
-      <div class="card border-success" style="width: 12rem;">
-        <div class="card-header">
-          <h6>Segunda-feira</h6>
+      <div *ngFor="let m of cardapioSemana; let i = index">
+
+        <div class="m-2">
+          <div class="card border-success" style="width: 12rem;">
+            <div class="card-header">
+              <h5>{{ m.dia }}</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ m.carboidrato }}</li>
+              <li class="list-group-item">{{ m.proteina }}</li>
+              <li class="list-group-item">{{ m.complemento }}</li>
+              <li class="list-group-item">{{ m.salada }}</li>
+            </ul>
+          </div>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Arroz e Feijão</li>
-          <li class="list-group-item">Bife</li>
-          <li class="list-group-item">Batata</li>
-          <li class="list-group-item">Salada de alface</li>
-        </ul>
-      </div>
-    </div>
 
-    <div class="m-2">
-      <div class="card border-success" style="width: 12rem;">
-        <div class="card-header">
-          <h6>Terça-feira</h6>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Arroz e Feijão</li>
-          <li class="list-group-item">Bife</li>
-          <li class="list-group-item">Batata</li>
-          <li class="list-group-item">Salada de alface</li>
-        </ul>
       </div>
-    </div>
 
-    <div class="m-2">
-      <div class="card border-success" style="width: 12rem;">
-        <div class="card-header">
-          <h6>Quarta-feira</h6>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Arroz e Feijão</li>
-          <li class="list-group-item">Bife</li>
-          <li class="list-group-item">Batata</li>
-          <li class="list-group-item">Salada de alface</li>
-        </ul>
-      </div>
     </div>
-
-    <div class="m-2">
-      <div class="card border-success" style="width: 12rem;">
-        <div class="card-header">
-          <h6>Quinta-feira</h6>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Arroz e Feijão</li>
-          <li class="list-group-item">Bife</li>
-          <li class="list-group-item">Batata</li>
-          <li class="list-group-item">Salada de alface</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="m-2">
-      <div class="card border-success" style="width: 12rem;">
-        <div class="card-header">
-          <h6>Sexta-feira</h6>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Arroz e Feijão</li>
-          <li class="list-group-item">Bife</li>
-          <li class="list-group-item">Batata</li>
-          <li class="list-group-item">Salada de alface</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="m-2">
-      <div class="card border-success" style="width: 12rem;">
-        <div class="card-header">
-          <h6>Sabado</h6>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Arroz e Feijão</li>
-          <li class="list-group-item">Bife</li>
-          <li class="list-group-item">Batata</li>
-          <li class="list-group-item">Salada de alface</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="m-2">
-      <div class="card border-success" style="width: 12rem;">
-        <div class="card-header">
-          <h6>Domingo</h6>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Arroz e Feijão</li>
-          <li class="list-group-item">Bife</li>
-          <li class="list-group-item">Batata</li>
-          <li class="list-group-item">Salada de alface</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
+  </section>
 </div>

@@ -9,6 +9,8 @@ import { Marcacao } from '../model/Marcacao';
 export class MarcacaoService {
   private marcacaoTeste: Marcacao[] = [];
 
+  private dataHora: Date = new Date();
+
 
   private marcacoes: string[] = [];
   constructor() { }
@@ -24,24 +26,24 @@ export class MarcacaoService {
       0,
       'Alexandre',
       'T.I',
-      '01/11/2024',
+      this.dataHora.toLocaleString(),
       '222'
     );
 
     let m2: Marcacao = new Marcacao(
       0,
-      'Giuliano',
-      'T.I',
-      '02/11/2024',
-      '222'
+      'Lucas',
+      'Ouvidoria',
+      this.dataHora.toLocaleString(),
+      '239'
     );
 
     let m3: Marcacao = new Marcacao(
       0,
-      'Lucas',
-      'Ouvidoria',
-      '03/11/2024',
-      '239'
+      'Giuliano',
+      'T.I',
+      this.dataHora.toLocaleString(),
+      '222'
     );
 
     this.marcacaoTeste.push(m, m2, m3);

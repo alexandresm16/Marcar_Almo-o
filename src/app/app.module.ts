@@ -11,6 +11,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { VisualizarMarcacoesComponent } from './componentes/visualizar-marcacoes/visualizar-marcacoes.component';
 import { MarcarComponent } from './componentes/marcar/marcar.component';
 import { CardapioComponent } from './componentes/cardapio/cardapio.component';
+import {NgOptimizedImage} from "@angular/common";
 
 
 @NgModule({
@@ -24,11 +25,12 @@ import { CardapioComponent } from './componentes/cardapio/cardapio.component';
     MarcarComponent,
     CardapioComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        NgOptimizedImage
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

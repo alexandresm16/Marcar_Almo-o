@@ -3,6 +3,8 @@ import {Cardapio} from "../../app-core/model/Cardapio";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CardapioService} from "../../app-core/servicos/cardapio-service";
 
+declare var $: any;
+
 @Component({
   selector: 'app-cardapio',
   templateUrl: './cardapio.component.html',
@@ -24,10 +26,10 @@ export class CardapioComponent implements OnInit {
     this.formularioCardapio = this.fb.group({
       id: ['', Validators.required],
       dia: ['', Validators.required],
-      cardoidrato: ['', Validators.required],
-      proteina: ['',],
-      complemento: ['', ],
-      salada: ['', Validators.required]
+      cardoidrato: ['-', Validators.required],
+      proteina: ['-',],
+      complemento: ['-', ],
+      salada: ['-', Validators.required]
     });
 
   }
@@ -36,7 +38,7 @@ export class CardapioComponent implements OnInit {
   }
 
 
-  addMarcacao(){
+  addCardapio(){
     this.cardapioService.addCardapio("Cardapio" + this.i);
     this.i ++;
   }
@@ -44,6 +46,15 @@ export class CardapioComponent implements OnInit {
   salvarCardapio(){
     console.log('DADOS DO NOVO CARDAPIO: ', this.formularioCardapio.value);
 
+  }
+
+
+  openModal(){
+    $('#edit-cardapio').modal('show');
+  }
+
+  closeModal(){
+    $('#edit-cardapio').modal('hide');
   }
 
   protected readonly Cardapio = Cardapio;

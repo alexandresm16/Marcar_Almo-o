@@ -1,43 +1,50 @@
-<h1 class="text-center mt-4 title text-capitalize">Insira as informações a baixo para realizar a marcação do
-  almoço:</h1>
-
-<div class="mt-5 p-4 container border rounded border-dark back">
-  <form [formGroup]="formularioMarcacao"
-        (ngSubmit)="salvarMarcacao()">
-    <div class="form-row">
-      <div class="mb-3 col-md-12">
-        <label for="nome" class="form-label">
-          <b>Nome:</b>
-        </label>
-        <input type="text" class="form-control" id="nome" formControlName="nome">
-      </div>
-      <div class="mb-3 col-md-6">
-        <label for="setor" class="form-label">
-          <b>Setor:</b>
-        </label>
-        <input type="text" class="form-control" id="setor" formControlName="setor">
-      </div>
-      <div class="mb-3 col-md-6">
-        <label for="ramal" class="form-label">
-          <b>Ramal:</b>
-        </label>
-        <input type="text" class="form-control" id="ramal"
-               formControlName="ramal">
-      </div>
-      <div class="mb-3 col-md-12">
-        <label for="dataInclusao" class="form-label">
-          <b>Data da Inclusão:</b>
-        </label>
-        <input type="datetime-local" class="form-control" id="dataInclusao"
-               formControlName="dataInclusao">
+<div>
+  <section class="border-top border-dark col-md-12">
+    <h1 class="text-center mt-5 title">Insira as informações a baixo <br> para realizar a marcação do
+      almoço:</h1>
+    <div class="col-md-4 offset-md-4">
+      <div class="mt-5 p-4 container border rounded border-dark back">
+        <form [formGroup]="formularioMarcacao"
+              (ngSubmit)="salvarMarcacao()">
+          <div class="form-row">
+            <div class="mb-3 col-md-12">
+              <label for="nome" class="form-label">
+                <b>Nome:</b>
+              </label>
+              <input type="text" class="form-control" id="nome" formControlName="nome">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="setor" class="form-label">
+                <b>Setor:</b>
+              </label>
+              <input type="text" class="form-control" id="setor" formControlName="setor">
+            </div>
+            <div class="mb-3 col-md-6">
+              <label for="ramal" class="form-label">
+                <b>Ramal:</b>
+              </label>
+              <input type="text" class="form-control" id="ramal"
+                     formControlName="ramal">
+            </div>
+            <div class="mb-3 col-md-12">
+              <label for="dataInclusao" class="form-label">
+                <b>Data da Inclusão:</b>
+              </label>
+              <input type="datetime-local" class="form-control" id="dataInclusao"
+                     formControlName="dataInclusao">
+            </div>
+          </div>
+          <div class="pt-3 text-center">
+            <button class="btn btn-success btn-lg" type="submit">
+              AGENDAR
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="pt-3 text-center">
-      <button class="btn btn-success btn-lg" type="submit">
-        MARCAR
-      </button>
-    </div>
 
-  </form>
+    <div class="container" style="width: 100%; height: 340px">
+    </div>
+  </section>
 
 </div>

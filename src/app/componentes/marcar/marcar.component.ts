@@ -27,7 +27,7 @@ export class MarcarComponent implements OnInit {
       nome: ['', Validators.required],
       setor: ['', Validators.required],
       ramal: ['', Validators.required],
-      dataInclusao: ['', Validators.required]
+      dataInclusao: ['',Validators.required]
     });
   }
 

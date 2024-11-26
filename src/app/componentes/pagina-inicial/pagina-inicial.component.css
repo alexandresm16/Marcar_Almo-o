@@ -1,5 +1,10 @@
 
 .back {
-  background-color: rgba(100, 149, 237, 0.2);
+  background-color: rgba(43, 110, 197, 0.5);
+  font-family: "Times New Roman", Times, serif;
+}
+
+.back2 {
+  background-color: rgba(43, 110, 197, 0.5);
   font-family: "Times New Roman", Times, serif;
 }

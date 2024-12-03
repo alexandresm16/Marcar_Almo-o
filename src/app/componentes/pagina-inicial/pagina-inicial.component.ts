@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Cardapio} from "../../app-core/model/Cardapio";
 import {CardapioService} from "../../app-core/servicos/cardapio-service";
-import {Form, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -12,8 +11,7 @@ export class PaginaInicialComponent implements OnInit {
 
   cardapioSemana: Cardapio [] = [];
 
-  constructor(private cardapioService: CardapioService,
-              private fb: FormBuilder) {
+  constructor(private cardapioService: CardapioService) {
 
     this.cardapioSemana = cardapioService.populartabela();
   }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MarcacaoService} from "../../app-core/servicos/marcacao-service.service";
 import {Marcacao} from "../../app-core/model/Marcacao";
-import {MarcarComponent} from "../marcar/marcar.component";
 
 declare var $: any;
 

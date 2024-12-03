@@ -27,7 +27,8 @@ export class MarcacaoService {
       'Alexandre',
       'T.I',
       this.dataHora.toLocaleString(),
-      '222'
+      '222',
+      'Colaborador'
     );
 
     let m2: Marcacao = new Marcacao(
@@ -35,7 +36,8 @@ export class MarcacaoService {
       'Lucas',
       'Ouvidoria',
       this.dataHora.toLocaleString(),
-      '239'
+      '239',
+      'Aluno'
     );
 
     let m3: Marcacao = new Marcacao(
@@ -43,7 +45,8 @@ export class MarcacaoService {
       'Giuliano',
       'T.I',
       this.dataHora.toLocaleString(),
-      '222'
+      '222',
+      'Residente'
     );
 
     this.marcacaoTeste.push(m, m2, m3);

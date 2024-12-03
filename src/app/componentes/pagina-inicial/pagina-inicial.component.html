@@ -11,7 +11,7 @@
       <div class="py-4 pb-2">
         <button class="btn btn-success btn-lg" [routerLink]="'/marcar'">Ir para Agendamento</button>
       </div>
-      <p class="mt-5 lead text-center text-white text-capitalize">
+      <p class="mt-5 lead text-center text-capitalize">
         <u>Horario para agendamento de almoço 06:00h ás 09:30h.</u>
       </p>
     </div>
@@ -20,14 +20,14 @@
   <section class="border-bottom border-top border-dark col-md-12 back2">
     <div class="py-5 col-md-12 row justify-content-center text-center">
 
-      <h1 class="pb-2 title col-md-12">Cardapio da semana</h1>
+      <h1 class="pb-5 pt-1 title col-md-12"><i>Cardapio da semana</i></h1>
 
       <div *ngFor="let m of cardapioSemana; let i = index">
 
         <div class="m-2">
-          <div class="card border-success" style="width: 12rem;">
+          <div class="card border-info" style="width: 12rem;">
             <div class="card-header">
-              <h5>{{ m.dia }}</h5>
+              <h5><i><u>{{ m.dia }}</u></i></h5>
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">{{ m.carboidrato }}</li>
@@ -37,9 +37,8 @@
             </ul>
           </div>
         </div>
-
       </div>
-
     </div>
   </section>
+
 </div>

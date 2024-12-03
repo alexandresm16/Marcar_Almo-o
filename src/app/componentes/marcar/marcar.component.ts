@@ -17,17 +17,21 @@ export class MarcarComponent implements OnInit {
 
   formularioMarcacao: FormGroup;
 
+  private fb: FormBuilder;
+
   constructor(private marcacaoService: MarcacaoService,
-              private fb: FormBuilder) {
+              fb: FormBuilder) {
+    this.fb = fb;
 
     this.marcacoes= marcacaoService.populartabela();
 
     this.formularioMarcacao = this.fb.group({
       id: ['', Validators.required],
-      nome: ['', Validators.required],
-      setor: ['', Validators.required],
-      ramal: ['', Validators.required],
-      dataInclusao: ['',Validators.required]
+      nome: ['', Validators.required, Validators.minLength(5)],
+      setor: ['', Validators.required, Validators.minLength(8)],
+      ramal: ['', Validators.required, Validators.minLength(3), Validators.maxLength(3)],
+      dataInclusao: ['',Validators.required],
+      tipo: ['',Validators.required]
     });
   }
 

@@ -1,24 +1,38 @@
 <div>
   <section class="border-top border-dark col-md-12">
-    <h1 class="text-center mt-5 title">Insira as informações a baixo <br> para realizar a marcação do
+    <h1 class="text-center mt-5 title">Insira as informações a baixo <br> para realizar o agendamento do
       almoço:</h1>
     <div class="col-md-4 offset-md-4">
       <div class="mt-5 p-4 container border rounded border-dark back">
         <form [formGroup]="formularioMarcacao"
               (ngSubmit)="salvarMarcacao()">
           <div class="form-row">
+
             <div class="mb-3 col-md-12">
               <label for="nome" class="form-label">
                 <b>Nome:</b>
               </label>
               <input type="text" class="form-control" id="nome" formControlName="nome">
             </div>
-            <div class="mb-3 col-md-6">
+
+            <div class="mb-3 col-md-12">
               <label for="setor" class="form-label">
                 <b>Setor:</b>
               </label>
               <input type="text" class="form-control" id="setor" formControlName="setor">
             </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="tipo" class="form-label">
+                <b>Função:</b>
+              </label>
+              <select class="custom-select mr-sm-2" id="tipo">
+                <option value="1">Colaborador</option>
+                <option value="2">Residente</option>
+                <option value="3">Aluno</option>
+              </select>
+            </div>
+
             <div class="mb-3 col-md-6">
               <label for="ramal" class="form-label">
                 <b>Ramal:</b>
@@ -26,6 +40,7 @@
               <input type="text" class="form-control" id="ramal"
                      formControlName="ramal">
             </div>
+
             <div class="mb-3 col-md-12">
               <label for="dataInclusao" class="form-label">
                 <b>Data da Inclusão:</b>
@@ -33,9 +48,10 @@
               <input type="datetime-local" class="form-control" id="dataInclusao"
                      formControlName="dataInclusao">
             </div>
+
           </div>
           <div class="pt-3 text-center">
-            <button class="btn btn-success btn-lg" type="submit">
+            <button class="btn btn-success btn-lg" type="submit" [disabled]="formularioMarcacao.invalid">
               AGENDAR
             </button>
           </div>

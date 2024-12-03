@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg
                     navbar-light bg-light">
     <div class="nav-brand" href="#">
-      <a class="nav-link text-dark"  [routerLink]="'pagina-inicial'">
+      <a class="nav-link text-dark" [routerLink]="'pagina-inicial'">
         <i class="fa-solid fa-utensils"></i>
       </a>
     </div>
@@ -13,16 +13,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link"  [routerLink]="'pagina-inicial'"
+          <a class="nav-link" [routerLink]="'pagina-inicial'"
              [routerLinkActive]="'active'">Pagina Inicial</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'marcar'"
-              [routerLinkActive]="'active'">Marcar</a>
+             [routerLinkActive]="'active'">Agendar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'visualizar-marcacoes'"
-             [routerLinkActive]="'active'">Visualizar agendamentos</a>
+             [routerLinkActive]="'active'">Visualizar Agendamentos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="'cardapio'"
@@ -31,9 +31,55 @@
       </ul>
     </div>
     <div class="nav-item float-right">
-      <button class="btn btn-info btn-arredondamento">
+      <button class="btn btn-info btn-arredondamento" (click)="openModal()">
         Login
       </button>
     </div>
   </nav>
+</div>
+
+
+<div class="modal" tabindex="-1" id="login">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h5 class="modal-title">
+          LOGIN
+        </h5>
+      </div>
+
+      <div>
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="mb-3 col-md-12">
+              <form [formGroup]="loginForm"
+                    (ngSubmit)="onSubmit()">
+                <div class="mb-3 col-md-12">
+                  <label for="usuario" class="form-label">
+                    <b>Usuario:</b>
+                  </label>
+                  <input type="text" class="form-control" id="usuario" formControlName="usuario">
+                </div>
+
+                <div class="mb-3 col-md-12">
+                  <label for="senha" class="form-label">
+                    <b>Senha:</b>
+                  </label>
+                  <input type="password" class="form-control" id="senha" formControlName="password">
+                </div>
+              </form>
+              <div class="modal-footer justify-content-center">
+                <button class="btn btn-success" type="submit" [disabled]="loginForm.invalid">
+                  Login
+                </button>
+                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal" (click)="closeModal()">
+                  Fechar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

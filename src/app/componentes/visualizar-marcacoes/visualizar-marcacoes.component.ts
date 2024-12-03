@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MarcacaoService} from "../../app-core/servicos/marcacao-service.service";
 import {Marcacao} from "../../app-core/model/Marcacao";
+import {MarcarComponent} from "../marcar/marcar.component";
 
 declare var $: any;
 
@@ -26,9 +27,10 @@ export class VisualizarMarcacoesComponent implements OnInit {
 
     this.formularioMarcacao = this.fb.group({
       id: ['', Validators.required],
-      nome: ['', Validators.required],
-      setor: ['', Validators.required],
-      ramal: ['', Validators.required],
+      nome: ['', Validators.required, Validators.minLength(5)],
+      setor: ['', Validators.required, Validators.minLength(8)],
+      ramal: ['', Validators.required, Validators.minLength(3), Validators.maxLength(3)],
+      tipo: ['', Validators.required],
       dataInclusao: ['', Validators.required]
     });
   }

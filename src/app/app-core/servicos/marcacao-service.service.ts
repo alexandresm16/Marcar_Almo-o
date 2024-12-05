@@ -49,8 +49,10 @@ export class MarcacaoService {
       'Residente'
     );
 
-    this.marcacaoTeste.push(m, m2, m3);
-    return this.marcacaoTeste;
+    const marcacoes: Marcacao[] = [];
+    marcacoes.push(m, m2, m3)
+    
+    return marcacoes;
   }
 }
 

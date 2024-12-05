@@ -1,5 +1,6 @@
 import {Cardapio} from "../model/Cardapio";
 import {Injectable} from "@angular/core";
+import {Marcacao} from "../model/Marcacao";
 
 @Injectable({
   providedIn: 'root'
@@ -81,7 +82,9 @@ export class CardapioService {
       'Salada de tomate'
     );
 
-    this.cardapioSemana.push(c1, c2, c3, c4, c5, c6, c7);
-    return this.cardapioSemana;
+    const cardapios: Cardapio[] = [];
+    cardapios.push(c1, c2, c3, c4, c5, c6, c7);
+
+    return cardapios;
   }
 }

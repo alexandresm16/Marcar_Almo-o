@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import swal from "sweetalert2";
 
 declare var $: any;
 
@@ -10,6 +11,7 @@ declare var $: any;
 })
 export class CabecalhoComponent implements OnInit {
 
+  logado: boolean = false;
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -35,6 +37,20 @@ export class CabecalhoComponent implements OnInit {
     if (this.loginForm.valid) {
       console.log('Login: ', this.loginForm.value);
     }
+  }
+
+  login(){
+    if (this.loginForm.valid) {
+      this.logado=true;
+      this.closeModal();
+    }else {
+      swal.fire('Cuidado', 'Login ou senha invalidos', 'warning');
+    }
+
+  }
+
+  sair(){
+    this.logado=false;
   }
 
 

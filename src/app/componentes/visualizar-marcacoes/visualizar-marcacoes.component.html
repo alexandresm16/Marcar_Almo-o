@@ -64,12 +64,20 @@
                 Nome
               </label>
               <input type="text" class="form-control" id="nome" formControlName="nome">
+              <div class="text-danger"
+                   *ngIf="isCampovalido('nome')">
+                Campo Obrigatório!
+              </div>
             </div>
             <div class="mb-3 col-md-12">
               <label for="setor" class="form-label">
                 Setor
               </label>
               <input type="text" class="form-control" id="setor" formControlName="setor">
+              <div class="text-danger"
+                   *ngIf="isCampovalido('setor')">
+                Campo Obrigatório!
+              </div>
             </div>
             <div class="mb-3 col-md-6">
               <label for="ramal" class="form-label">
@@ -77,16 +85,24 @@
               </label>
               <input type="text" class="form-control" id="ramal"
                      formControlName="ramal">
+              <div class="text-danger"
+                   *ngIf="isCampovalido('ramal')">
+                Campo Obrigatório!
+              </div>
             </div>
             <div class="mb-3 col-md-6">
               <label for="tipo" class="form-label">
                 Função
               </label>
-              <select class="custom-select mr-sm-2" id="tipo">
+              <select class="custom-select mr-sm-2" id="tipo" formControlName="tipo">
                 <option value="1">Colaborador</option>
                 <option value="2">Residente</option>
                 <option value="3">Aluno</option>
               </select>
+              <div class="text-danger"
+                   *ngIf="isCampovalido('tipo')">
+                Campo Obrigatório!
+              </div>
             </div>
             <div class="mb-3 col-md-12">
               <label for="dataInclusao" class="form-label">
@@ -94,6 +110,10 @@
               </label>
               <input type="datetime-local" class="form-control" id="dataInclusao"
                      formControlName="dataInclusao">
+              <div class="text-danger"
+                   *ngIf="isCampovalido('dataInclusao')">
+                Campo Obrigatório!
+              </div>
             </div>
           </div>
 

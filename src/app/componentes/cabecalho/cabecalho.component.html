@@ -20,20 +20,32 @@
           <a class="nav-link" [routerLink]="'marcar'"
              [routerLinkActive]="'active'">Agendar</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'visualizar-marcacoes'"
-             [routerLinkActive]="'active'">Visualizar Agendamentos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="'cardapio'"
-             [routerLinkActive]="'active'">Cardapio</a>
-        </li>
+
+        <ng-container *ngIf="logado">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'visualizar-marcacoes'"
+               [routerLinkActive]="'active'">Visualizar Agendamentos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'cardapio'"
+               [routerLinkActive]="'active'">Cardapio</a>
+          </li>
+        </ng-container>
+
       </ul>
     </div>
     <div class="nav-item float-right">
-      <button class="btn btn-info btn-arredondamento" (click)="openModal()">
-        Login
-      </button>
+      <ng-container *ngIf="!logado">
+        <button class="btn btn-info btn-arredondamento" (click)="openModal()">
+          Login
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="logado">
+        <button class="btn btn-info btn-arredondamento" [routerLink]="'pagina-inicial'" (click)="sair()">
+          Sair
+        </button>
+      </ng-container>
     </div>
   </nav>
 </div>
@@ -53,7 +65,7 @@
           <div class="form-row">
             <div class="mb-3 col-md-12">
               <form [formGroup]="loginForm"
-                    (ngSubmit)="onSubmit()">
+                    (ngSubmit)="login()">
                 <div class="mb-3 col-md-12">
                   <label for="usuario" class="form-label">
                     <b>Usuario:</b>
@@ -67,7 +79,7 @@
                   </label>
                   <input type="password" class="form-control" id="senha" formControlName="password">
                 </div>
-              </form>
+
               <div class="modal-footer justify-content-center">
                 <button class="btn btn-success" type="submit" [disabled]="loginForm.invalid">
                   Login
@@ -76,7 +88,9 @@
                   Fechar
                 </button>
               </div>
+              </form>
             </div>
+
           </div>
         </div>
       </div>

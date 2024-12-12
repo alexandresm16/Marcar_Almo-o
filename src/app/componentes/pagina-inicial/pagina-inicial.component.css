@@ -1,10 +1,12 @@
 
 .back {
-
+  background: rgb(222,144,178);
+  background: radial-gradient(circle, rgba(222,144,178,1) 0%, rgba(53,212,202,0.6474964985994398) 100%);
   font-family: "Times New Roman", Times, serif;
 }
 
 .back2 {
-
+  background: rgb(222,144,178);
+  background: radial-gradient(circle, rgba(222,144,178,1) 0%, rgba(53,212,202,0.6474964985994398) 100%);
   font-family: "Times New Roman", Times, serif;
 }

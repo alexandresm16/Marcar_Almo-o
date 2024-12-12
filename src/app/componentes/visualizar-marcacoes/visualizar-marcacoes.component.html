@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <h2>Lista de Marcações
     <button class="btn btn-primary btn-arredondamento"
-            (click)="openModal()">
+            (click)="openModal(); formularioMarcacao.reset()">
       <i class="fas fa-plus"></i>
       Novo Agendamento
     </button>
@@ -18,9 +18,9 @@
       <th scope="col">#</th>
       <th scope="col">Nome</th>
       <th scope="col">Setor</th>
-      <th scope="col">Função</th>
-      <th scope="col">Ramal</th>
       <th scope="col">Data / Hora da Inclusão</th>
+      <th scope="col">Ramal</th>
+      <th scope="col">Função</th>
       <th>Ações <i class="fas fa-cog"></i></th>
     </tr>
     </thead>
@@ -29,15 +29,15 @@
       <th scope="row">{{ i + 1 }}</th>
       <td>{{ m.nome }}</td>
       <td>{{ m.setor }}</td>
-      <td>{{ m.tipo }}</td>
+      <td>{{ m.dataInclusao | date: 'dd/MM/yy, hh:mm' }}</td>
       <td>{{ m.ramal }}</td>
-      <td>{{ m.dataInclusao }}</td>
+      <td>{{ m.tipo }}</td>
       <td>
-        <button class="btn rounded-circle">
+        <button class="btn rounded-circle" (click)="excluirTarefa(m.id ? m.id : 0)">
           <i class="fas fa-trash-alt"></i>
         </button>
         -
-        <button class="btn rounded-circle">
+        <button class="btn rounded-circle" (click)="carregarDadosMarcacao(m)">
           <i class="fas fa-edit"></i>
         </button>
       </td>
@@ -52,11 +52,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
-          Adicionar Nova Marcação
+          <ng-container *ngIf="formularioMarcacao.value.id > 0; else novaMarcacao">
+            Editar Agendamento
+          </ng-container>
+          <ng-template #novaMarcacao>
+            Adicionar Novo Agendamento
+          </ng-template>
         </h5>
       </div>
       <form [formGroup]="formularioMarcacao"
-            (ngSubmit)="salvarMarcacao()">
+            (ngSubmit)="submitform()">
         <div class="modal-body">
           <div class="form-row">
             <div class="mb-3 col-md-12">
@@ -95,26 +100,28 @@
                 Função
               </label>
               <select class="custom-select mr-sm-2" id="tipo" formControlName="tipo">
-                <option value="1">Colaborador</option>
-                <option value="2">Residente</option>
-                <option value="3">Aluno</option>
+                <option value="Colaborador">Colaborador</option>
+                <option value="Residente">Residente</option>
+                <option value="Aluno">Aluno</option>
               </select>
               <div class="text-danger"
                    *ngIf="isCampovalido('tipo')">
                 Campo Obrigatório!
               </div>
             </div>
-            <div class="mb-3 col-md-12">
-              <label for="dataInclusao" class="form-label">
-                Data da Inclusão
-              </label>
-              <input type="datetime-local" class="form-control" id="dataInclusao"
-                     formControlName="dataInclusao">
-              <div class="text-danger"
-                   *ngIf="isCampovalido('dataInclusao')">
-                Campo Obrigatório!
+            <ng-container *ngIf="formularioMarcacao.value.id > 0">
+              <div class="mb-3 col-md-12">
+                <label for="dataInclusao" class="form-label">
+                  Data da Inclusão
+                </label>
+                <input type="datetime-local" class="form-control" id="dataInclusao"
+                       formControlName="dataInclusao">
+                <div class="text-danger"
+                     *ngIf="isCampovalido('dataInclusao')">
+                  Campo Obrigatório!
+                </div>
               </div>
-            </div>
+            </ng-container>
           </div>
 
         </div>

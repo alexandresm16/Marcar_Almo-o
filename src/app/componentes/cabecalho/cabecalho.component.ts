@@ -33,12 +33,6 @@ export class CabecalhoComponent implements OnInit {
     $('#login').modal('hide');
   }
 
-  onSubmit(): void {
-    if (this.loginForm.valid) {
-      console.log('Login: ', this.loginForm.value);
-    }
-  }
-
   login(){
     if (this.loginForm.valid) {
       this.logado=true;

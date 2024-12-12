@@ -29,7 +29,7 @@ export class MarcarComponent implements OnInit {
 
 
     this.formularioMarcacao = this.fb.group({
-      id: [''],
+      id: [0],
       nome: ['', [Validators.required, Validators.minLength(5)]],
       setor: ['', [Validators.required, Validators.minLength(8)]],
       ramal: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
@@ -41,11 +41,6 @@ export class MarcarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-  addMarcacao() {
-    this.marcacaoService.addMarcacao("Marcacao" + this.i);
-    this.i++;
-  }
 
   salvarMarcacao() {
     if (this.formularioMarcacao.valid) {

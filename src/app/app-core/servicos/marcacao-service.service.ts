@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Marcacao } from '../model/Marcacao';
+import {Injectable} from '@angular/core';
+import {Marcacao} from '../model/Marcacao';
 import Dexie from "dexie";
+import {jsPDF} from "jspdf";
+import "jspdf-autotable";
 
 @Injectable({
   providedIn: 'root'
@@ -35,12 +37,53 @@ export class MarcacaoService extends Dexie {
     return await this.marcacaoDB.toArray();
   }
 
-  async removerMarcacao(id: number): Promise<void>{
+  async buscarMarcacaoDiaCorrente(): Promise<Marcacao[]> {
+    // Obter a data de hoje no formato 'yyyy-MM-dd'
+    const hoje = new Date();
+    const dataHoje = hoje.toISOString().slice(0, 10); // Formato 'yyyy-MM-dd'
+
+    // Buscar todas as marcações com LIKE no formato 'yyyy-MM-dd%'
+    const marcacoes = await this.marcacaoDB
+      .where('dataInclusao')
+      .startsWith(dataHoje)  // Busca todas as marcações com a data de hoje
+      .toArray();
+
+    return marcacoes;
+  }
+
+  async removerMarcacao(id: number): Promise<void> {
     return await this.marcacaoDB.delete(id);
   }
 
   async atualizarMarcacao(id: number, marcacao: Marcacao): Promise<number> {
     return await this.marcacaoDB.update(id, marcacao);
+  }
+
+  converterData(dataISO: string): string {
+    const [date, time] = dataISO.split('T');
+    const [year, month, day] = date.split('-');
+    const formattedTime = time.length === 5 ? `${time}:00` : time;
+    return `${day}/${month}/${year}, ${formattedTime}`;
+  }
+
+  async exportarParaPDF(marcacoes: Marcacao[]): Promise<void> {
+    const doc: any = new jsPDF();
+
+
+    // Gerando o PDF com a tabela
+    doc.autoTable({
+      head: [['Nome', 'Setor', 'Data Inclusão', 'Ramal', 'Tipo']],
+      body: marcacoes.map(marcacao => [
+        marcacao.nome,
+        marcacao.setor,
+        this.converterData(marcacao.dataInclusao),
+        marcacao.ramal,
+        marcacao.tipo
+      ]),
+    });
+
+    // Salvando o arquivo PDF
+    doc.save("marcacoes.pdf");
   }
 
 }

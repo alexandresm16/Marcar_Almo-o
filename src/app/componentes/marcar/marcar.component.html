@@ -35,9 +35,9 @@
                 <b>Função:</b>
               </label>
               <select class="custom-select mr-sm-2" id="tipo" formControlName="tipo">
-                <option value="1">Colaborador</option>
-                <option value="2">Residente</option>
-                <option value="3">Aluno</option>
+                <option value="Colaborador">Colaborador</option>
+                <option value="Residente">Residente</option>
+                <option value="Aluno">Aluno</option>
               </select>
               <div class="text-danger"
                    *ngIf="isCampovalido('tipo')">
@@ -56,15 +56,6 @@
                 Campo Obrigatório!
               </div>
             </div>
-
-            <div class="mb-3 col-md-12">
-              <label for="dataInclusao" class="form-label">
-                <b>Data da Inclusão:</b>
-              </label>
-              <input type="datetime-local" class="form-control" id="dataInclusao"
-                     formControlName="dataInclusao">
-            </div>
-
           </div>
           <div class="pt-3 text-center">
             <button class="btn btn-success btn-lg" type="submit" [disabled]="formularioMarcacao.invalid">

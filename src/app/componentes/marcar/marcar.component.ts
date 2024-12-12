@@ -11,8 +11,32 @@ import swal from "sweetalert2";
   styleUrls: ['./marcar.component.css']
 })
 export class MarcarComponent implements OnInit {
-  private dataHora: Date = new Date();
 
+
+  private dataBrasileira: string = (() => {
+    let dataHora: Date = new Date();
+    const options = { timeZone: "America/Sao_Paulo", hour12: false };
+    const dataBrasil = dataHora.toLocaleString("sv-SE", options); // "sv-SE" retorna no formato ISO
+    const [date, time] = dataBrasil.split(" ");
+    return `${date}T${time.slice(0, 5)}`; // Formato final: yyyy-MM-ddTHH:mm
+  })();
+
+  private dataHora: Date = new Date();
+  private data  = this.dataBrasileira
+  private horaLimiteString: string = '09:30:00';
+
+  public  formularioAberto: boolean = this.verificarHorario();
+
+  verificarHorario(): boolean {
+    const agora = new Date();
+    const horaLimiteArray = this.horaLimiteString.split(':');
+    const horaLimiteDate = new Date();
+    horaLimiteDate.setHours(Number(horaLimiteArray[0]), Number(horaLimiteArray[1]), 0, 0); // 09:30:00
+
+    // Verifica se o horário atual é anterior ao horário limite
+    console.log("horario limite" + horaLimiteDate);
+    return agora > horaLimiteDate;
+  }
 
 
   i: number = 0;
@@ -30,37 +54,50 @@ export class MarcarComponent implements OnInit {
 
     this.formularioMarcacao = this.fb.group({
       id: [0],
-      nome: ['', [Validators.required, Validators.minLength(5)]],
-      setor: ['', [Validators.required, Validators.minLength(8)]],
-      ramal: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
-      dataInclusao: ['', Validators.required],
+      nome: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+      setor: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      ramal: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(5)]],
+      dataInclusao: [''],
       tipo: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
+    if (this.formularioAberto) {
+      console.log("passou do horário");
+      console.log(this.dataHora);
+    } else {
+      console.log("Dentro do horário");
+      console.log(this.dataHora);
+    }
   }
 
 
   salvarMarcacao() {
     if (this.formularioMarcacao.valid) {
-      console.log("DADOS SALVOS COM SUCESSO: ",
-        this.formularioMarcacao.value);
+      const novaMarcacao = new Marcacao(
+        this.formularioMarcacao.value.nome,
+        this.formularioMarcacao.value.setor,
+        this.data,
+        this.formularioMarcacao.value.ramal,
+        this.formularioMarcacao.value.tipo,
+        undefined
+      );
 
-      let deuCerto = true;
-      if (deuCerto) {
-        swal.fire('sucesso', 'Agendamento realizado com sucesso', 'success');
-        this.formularioMarcacao.reset();
-      } else {
+      this.marcacaoService.adicionarMarcacao(novaMarcacao).then(resposta => {
+        if (resposta > 0) {
+          swal.fire('sucesso', 'Agendamento realizado com sucesso', 'success');
+          this.formularioMarcacao.reset();
+        }
+      }).catch(error => {
         swal.fire('Erro', 'Não foi possivel realizar o agendamento', 'error');
-      }
+      })
 
     } else {
       console.log("CAMPOS INVALIDOS ENCONTRADOS");
       this.marcarTodosComoClicados();
       swal.fire('Cuidado', 'Alguns campos estão invalidos', 'warning');
     }
-
   }
 
   isCampovalido(inputNome: string): boolean {
@@ -71,6 +108,8 @@ export class MarcarComponent implements OnInit {
   marcarTodosComoClicados() {
     this.formularioMarcacao.markAllAsTouched();
   }
+
+
 
   protected readonly Marcacao = Marcacao;
 

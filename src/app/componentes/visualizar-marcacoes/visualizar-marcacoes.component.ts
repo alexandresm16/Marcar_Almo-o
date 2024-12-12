@@ -16,7 +16,16 @@ export class VisualizarMarcacoesComponent implements OnInit {
 
   i: number = 0;
 
+  private dataBrasileira: string = (() => {
+    let dataHora: Date = new Date();
+    const options = { timeZone: "America/Sao_Paulo", hour12: false };
+    const dataBrasil = dataHora.toLocaleString("sv-SE", options); // "sv-SE" retorna no formato ISO
+    const [date, time] = dataBrasil.split(" ");
+    return `${date}T${time.slice(0, 5)}`; // Formato final: yyyy-MM-ddTHH:mm
+  })();
+
   private dataHora: Date = new Date();
+  private data  = this.dataBrasileira
 
   marcacoes: Marcacao [] = [];
 
@@ -26,8 +35,8 @@ export class VisualizarMarcacoesComponent implements OnInit {
               private fb: FormBuilder) {
 
     this.formularioMarcacao = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(5)]],
-      setor: ['', [Validators.required]],
+      nome: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+      setor: ['', [Validators.required, Validators.maxLength(20)]],
       ramal: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(5)]],
       dataInclusao: [''],
       tipo: ['', Validators.required],
@@ -36,11 +45,15 @@ export class VisualizarMarcacoesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listarMarcacoes();
+    this.listarMarcacoesHoje();
   }
 
   listarMarcacoes(){
     this.marcacaoService.buscarMarcacao().then(resposta => this.marcacoes = resposta);
+  }
+
+  listarMarcacoesHoje(){
+    this.marcacaoService.buscarMarcacaoDiaCorrente().then(resposta => this.marcacoes = resposta);
   }
 
   openModal() {
@@ -57,7 +70,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
       const novaMarcacao = new Marcacao(
         this.formularioMarcacao.value.nome,
         this.formularioMarcacao.value.setor,
-        this.dataHora.toString(),
+        this.data,
         this.formularioMarcacao.value.ramal,
         this.formularioMarcacao.value.tipo,
         undefined
@@ -67,7 +80,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
         if (resposta > 0) {
           swal.fire('sucesso', 'Agendamento realizado com sucesso', 'success');
           this.formularioMarcacao.reset();
-          this.listarMarcacoes();
+          this.listarMarcacoesHoje();
         }
       }).catch(error => {
         swal.fire('Erro', 'Não foi possivel realizar o agendamento', 'error');
@@ -111,7 +124,8 @@ export class VisualizarMarcacoesComponent implements OnInit {
       if(value.isConfirmed){
         this.marcacaoService.removerMarcacao(id).then(resposta => {
           swal.fire('Sucesso', 'Agendamento excluido com sucesso!', 'success');
-          this.listarMarcacoes();
+          this.formularioMarcacao.reset();
+          this.listarMarcacoesHoje();
         });
 
   }
@@ -119,15 +133,6 @@ export class VisualizarMarcacoesComponent implements OnInit {
       swal.fire('Erro', 'O agendamento não pode ser excluido', 'error');
     });
 
-  }
-
-
-
-  converterData(dataISO: string): string {
-    const [date, time] = dataISO.split('T');
-    const [year, month, day] = date.split('-');
-    const formattedTime = time.length === 5 ? `${time}:00` : time;
-    return `${day}/${month}/${year}, ${formattedTime}`;
   }
 
   carregarDadosMarcacao(editarMarcacao: Marcacao){
@@ -143,7 +148,6 @@ export class VisualizarMarcacoesComponent implements OnInit {
   }
 
   editarFormMarcacao(){
-    const formattedDate = this.converterData(this.formularioMarcacao.value.dataInclusao.toLocaleString());
     const editarMarcacao: Marcacao = new Marcacao(
       this.formularioMarcacao.value.nome,
       this.formularioMarcacao.value.setor,
@@ -158,7 +162,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
           swal.fire('Sucesso!','Agendamento editado com sucesso.', 'success');
           this.formularioMarcacao.reset();
           this.closeModal();
-          this.listarMarcacoes();
+          this.listarMarcacoesHoje();
         }else {
           swal.fire('Atenção', 'Nenhum agendamento econtrado, ou nenhuma atualização necessária', 'info');
         }
@@ -166,6 +170,9 @@ export class VisualizarMarcacoesComponent implements OnInit {
 
   }
 
+  exportarPdf(){
+    this.marcacaoService.exportarParaPDF(this.marcacoes);
+  }
 
 
   protected readonly Marcacao = Marcacao;

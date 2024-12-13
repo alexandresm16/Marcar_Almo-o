@@ -53,7 +53,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
   }
 
   listarMarcacoesHoje(){
-    this.marcacaoService.buscarMarcacaoDiaCorrente().then(resposta => this.marcacoes = resposta);
+    this.marcacaoService.buscarMarcacao().then(resposta => this.marcacoes = resposta);
   }
 
   openModal() {

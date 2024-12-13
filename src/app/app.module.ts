@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { CabecalhoComponent } from './componentes/cabecalho/cabecalho.component';
 import { RodapeComponent } from './componentes/rodape/rodape.component';
 import { PaginaInicialComponent } from './componentes/pagina-inicial/pagina-inicial.component';
-import { VisualizarTarefasComponent } from './componentes/visualizar-tarefas/visualizar-tarefas.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { VisualizarMarcacoesComponent } from './componentes/visualizar-marcacoes/visualizar-marcacoes.component';
 import { MarcarComponent } from './componentes/marcar/marcar.component';
@@ -20,7 +19,6 @@ import {NgOptimizedImage} from "@angular/common";
     CabecalhoComponent,
     RodapeComponent,
     PaginaInicialComponent,
-    VisualizarTarefasComponent,
     VisualizarMarcacoesComponent,
     MarcarComponent,
     CardapioComponent,

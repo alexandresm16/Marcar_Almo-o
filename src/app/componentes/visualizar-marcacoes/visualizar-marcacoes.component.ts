@@ -24,7 +24,6 @@ export class VisualizarMarcacoesComponent implements OnInit {
     return `${date}T${time.slice(0, 5)}`; // Formato final: yyyy-MM-ddTHH:mm
   })();
 
-  private dataHora: Date = new Date();
   private data  = this.dataBrasileira
 
   marcacoes: Marcacao [] = [];
@@ -53,7 +52,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
   }
 
   listarMarcacoesHoje(){
-    this.marcacaoService.buscarMarcacao().then(resposta => this.marcacoes = resposta);
+    this.marcacaoService.buscarMarcacaoDiaCorrente().then(resposta => this.marcacoes = resposta);
   }
 
   openModal() {

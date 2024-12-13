@@ -38,9 +38,11 @@ export class MarcacaoService extends Dexie {
   }
 
   async buscarMarcacaoDiaCorrente(): Promise<Marcacao[]> {
-    // Obter a data de hoje no formato 'yyyy-MM-dd'
+    // Obter a data de hoje no formato 'yyyy-MM-dd' considerando o fuso horário local
     const hoje = new Date();
-    const dataHoje = hoje.toISOString().slice(0, 10); // Formato 'yyyy-MM-dd'
+
+    // Ajustar para o horário local
+    const dataHoje = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()).toISOString().slice(0, 10); // Formato 'yyyy-MM-dd'
 
     // Buscar todas as marcações com LIKE no formato 'yyyy-MM-dd%'
     const marcacoes = await this.marcacaoDB

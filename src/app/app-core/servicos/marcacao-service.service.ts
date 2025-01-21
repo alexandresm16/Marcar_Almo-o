@@ -9,7 +9,8 @@ import "jspdf-autotable";
 })
 
 export class MarcacaoService extends Dexie {
-  private marcacaoTeste: Marcacao[] = [];
+
+  private marcacaoTeste: Marcacao[] = []
 
   private dataHora: Date = new Date();
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import swal from "sweetalert2";
+import {LoginServiceService} from "../../app-core/servicos/login-service.service";
+import Swal from "sweetalert2";
 
 declare var $: any;
 
@@ -21,6 +22,27 @@ export class CabecalhoComponent implements OnInit {
     });
   }
 
+  login(): void {
+    if (this.loginForm.valid) {
+      // Chamando o método do serviço de login para verificar as credenciais
+      this.logado = LoginServiceService.logar(this.loginForm);
+
+      if (this.logado) {
+        this.closeModal();
+      } else {
+        // Se não logado, exibe a mensagem de erro
+        Swal.fire('Cuidado', 'Login ou senha inválidos', 'warning');
+      }
+    } else {
+      // Se o formulário for inválido, exibe a mensagem de erro
+      Swal.fire('Cuidado', 'Por favor, preencha todos os campos corretamente.', 'warning');
+    }
+  }
+
+  sair() {
+    this.logado = false;
+  }
+
   ngOnInit(): void {
   }
 
@@ -31,20 +53,6 @@ export class CabecalhoComponent implements OnInit {
 
   closeModal() {
     $('#login').modal('hide');
-  }
-
-  login(){
-    if (this.loginForm.valid) {
-      this.logado=true;
-      this.closeModal();
-    }else {
-      swal.fire('Cuidado', 'Login ou senha invalidos', 'warning');
-    }
-
-  }
-
-  sair(){
-    this.logado=false;
   }
 
 

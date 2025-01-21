@@ -1,5 +1,5 @@
 section {
-  background-color: rgba(43, 110, 197, 0.5);
+  background: linear-gradient(to top, rgba(10,110,115,0.3) 35%, rgba(255,153,204,0.3) 85%);
 }
 
 .back {

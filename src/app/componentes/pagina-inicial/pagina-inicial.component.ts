@@ -13,10 +13,14 @@ export class PaginaInicialComponent implements OnInit {
 
   constructor(private cardapioService: CardapioService) {
 
-    this.cardapioSemana = cardapioService.populartabela();
   }
 
   ngOnInit(): void {
+    this.listarCardapios();
+  }
+
+  listarCardapios(){
+    this.cardapioService.buscarCardapio().then(resposta => this.cardapioSemana = resposta);
   }
 
 }

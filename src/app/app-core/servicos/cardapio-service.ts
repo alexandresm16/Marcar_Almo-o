@@ -1,23 +1,48 @@
 import {Cardapio} from "../model/Cardapio";
 import {Injectable} from "@angular/core";
 import {Marcacao} from "../model/Marcacao";
+import Dexie from "dexie";
 
 @Injectable({
   providedIn: 'root'
 })
-export class CardapioService {
+export class CardapioService extends Dexie {
 
   private cardapioSemana: Cardapio [] = [];
 
   private cardapios: string [] = [];
 
-  addCardapio(marcacao: string){
+  cardapioDB: Dexie.Table<Cardapio, number>;
+
+  constructor() {
+    super('cardapioDB');
+    this.version(1).stores({
+      cardapios: '++id, dia, carboidrato, proteina, complemento, salada',
+    });
+
+    this.cardapioDB = this.table('cardapios');
+  }
+
+  addCardapio(marcacao: string) {
     this.cardapios.push(marcacao);
     console.log("CARDAPIO ADICIONADO",
       this.cardapios);
   }
 
-  populartabela(): Cardapio[] {
+  async adicionarCardapio(cardapio: Cardapio): Promise<number> {
+    return await this.cardapioDB.add(cardapio);
+  }
+
+  async atualizarCardapio(id: number, cardapio: Cardapio): Promise<number> {
+    return await this.cardapioDB.update(id, cardapio);
+  }
+
+  async buscarCardapio(): Promise<Cardapio[]> {
+    return await this.cardapioDB.toArray();
+  }
+
+
+  populartabela(){
 
     let c1: Cardapio = new Cardapio(
       0,
@@ -29,7 +54,7 @@ export class CardapioService {
     );
 
     let c2: Cardapio = new Cardapio(
-      0,
+      1,
       'Terça-Feira',
       'Arroz e Feijão',
       'Frango Assado',
@@ -38,7 +63,7 @@ export class CardapioService {
     );
 
     let c3: Cardapio = new Cardapio(
-      0,
+      2,
       'Quarta-Feira',
       'Arroz e Feijão',
       'Peixe',
@@ -47,7 +72,7 @@ export class CardapioService {
     );
 
     let c4: Cardapio = new Cardapio(
-      0,
+      3,
       'Quinta-Feira',
       'Arroz e lentilha',
       'bife',
@@ -56,7 +81,7 @@ export class CardapioService {
     );
 
     let c5: Cardapio = new Cardapio(
-      0,
+      4,
       'Sexta-Feira',
       'Arroz e Feijão',
       'bife',
@@ -65,7 +90,7 @@ export class CardapioService {
     );
 
     let c6: Cardapio = new Cardapio(
-      0,
+      5,
       'Sabado',
       'Arroz e Feijão',
       'Frango frito',
@@ -74,7 +99,7 @@ export class CardapioService {
     );
 
     let c7: Cardapio = new Cardapio(
-      0,
+      6,
       'Domingo',
       'Arroz e Feijão',
       'Churrasco',
@@ -82,9 +107,14 @@ export class CardapioService {
       'Salada de tomate'
     );
 
-    const cardapios: Cardapio[] = [];
-    cardapios.push(c1, c2, c3, c4, c5, c6, c7);
-
-    return cardapios;
+    this.adicionarCardapio(c1);
+    this.adicionarCardapio(c2);
+    this.adicionarCardapio(c3);
+    this.adicionarCardapio(c4);
+    this.adicionarCardapio(c5);
+    this.adicionarCardapio(c6);
+    this.adicionarCardapio(c7);
   }
+
+
 }

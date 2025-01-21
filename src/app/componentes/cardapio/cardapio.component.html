@@ -16,7 +16,7 @@
           <li class="list-group-item">{{ m.salada }}</li>
           <li class="list-group-item">
             <button class="btn btn-info rounded-circle"
-                    (click)="openModal()">
+                    (click)="carregarDadosCardapio(m)">
               <i class="fas fa-edit"></i>
             </button>
           </li>
@@ -39,14 +39,14 @@
         </h5>
       </div>
       <form [formGroup]="formularioCardapio"
-            (ngSubmit)="salvarCardapio()">
+            (ngSubmit)="editarFormCardapio()">
         <div class="modal-body">
           <div class="form-row">
             <div class="mb-3 col-md-12">
-              <label for="cardoidrato" class="form-label">
-                Cardoidrato
+              <label for="carboidrato" class="form-label">
+                Carboidrato
               </label>
-              <input type="text" class="form-control" id="cardoidrato" formControlName="cardoidrato">
+              <input type="text" class="form-control" id="carboidrato" formControlName="carboidrato">
             </div>
             <div class="mb-3 col-md-6">
               <label for="proteina" class="form-label">

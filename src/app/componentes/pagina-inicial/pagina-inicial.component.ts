@@ -12,11 +12,11 @@ export class PaginaInicialComponent implements OnInit {
   cardapioSemana: Cardapio [] = [];
 
   constructor(private cardapioService: CardapioService) {
-
   }
 
   ngOnInit(): void {
     this.listarCardapios();
+    console.log("Cardapio inicial");
   }
 
   listarCardapios(){

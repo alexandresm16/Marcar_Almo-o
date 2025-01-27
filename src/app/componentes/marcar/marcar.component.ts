@@ -15,17 +15,17 @@ export class MarcarComponent implements OnInit {
 
   private dataBrasileira: string = (() => {
     let dataHora: Date = new Date();
-    const options = { timeZone: "America/Sao_Paulo", hour12: false };
+    const options = {timeZone: "America/Sao_Paulo", hour12: false};
     const dataBrasil = dataHora.toLocaleString("sv-SE", options); // "sv-SE" retorna no formato ISO
     const [date, time] = dataBrasil.split(" ");
     return `${date}T${time.slice(0, 5)}`; // Formato final: yyyy-MM-ddTHH:mm
   })();
 
   private dataHora: Date = new Date();
-  private data  = this.dataBrasileira
+  private data = this.dataBrasileira
   private horaLimiteString: string = '09:30:00';
 
-  public  formularioAberto: boolean = this.verificarHorario();
+  public formularioAberto: boolean = this.verificarHorario();
 
   verificarHorario(): boolean {
     const agora = new Date();
@@ -35,7 +35,7 @@ export class MarcarComponent implements OnInit {
 
     // Verifica se o horário atual é anterior ao horário limite
     console.log("horario limite" + horaLimiteDate);
-    return agora > horaLimiteDate;
+    return agora < horaLimiteDate;
   }
 
 
@@ -64,10 +64,10 @@ export class MarcarComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.formularioAberto) {
-      console.log("passou do horário");
+      console.log("Dentro do horário");
       console.log(this.dataHora);
     } else {
-      console.log("Dentro do horário");
+      console.log("passou do horário");
       console.log(this.dataHora);
     }
   }
@@ -75,23 +75,28 @@ export class MarcarComponent implements OnInit {
 
   salvarMarcacao() {
     if (this.formularioMarcacao.valid) {
-      const novaMarcacao = new Marcacao(
-        this.formularioMarcacao.value.nome,
-        this.formularioMarcacao.value.setor,
-        this.data,
-        this.formularioMarcacao.value.ramal,
-        this.formularioMarcacao.value.tipo,
-        undefined
-      );
+      if (this.formularioAberto) {
+        const novaMarcacao = new Marcacao(
+          this.formularioMarcacao.value.nome,
+          this.formularioMarcacao.value.setor,
+          this.data,
+          this.formularioMarcacao.value.ramal,
+          this.formularioMarcacao.value.tipo,
+          undefined
+        );
 
-      this.marcacaoService.adicionarMarcacao(novaMarcacao).then(resposta => {
-        if (resposta > 0) {
-          swal.fire('sucesso', 'Agendamento realizado com sucesso', 'success');
-          this.formularioMarcacao.reset();
-        }
-      }).catch(error => {
-        swal.fire('Erro', 'Não foi possivel realizar o agendamento', 'error');
-      })
+        this.marcacaoService.adicionarMarcacao(novaMarcacao).then(resposta => {
+          if (resposta > 0) {
+            swal.fire('sucesso', 'Agendamento realizado com sucesso!', 'success');
+            this.formularioMarcacao.reset();
+          }
+        }).catch(error => {
+          swal.fire('Erro', 'Não foi possivel realizar o agendamento.', 'error');
+        })
+
+      } else {
+        swal.fire('Alerta', 'Não foi possivel realizar o agendamento pois já passou do horario!', 'warning');
+      }
 
     } else {
       console.log("CAMPOS INVALIDOS ENCONTRADOS");
@@ -108,7 +113,6 @@ export class MarcarComponent implements OnInit {
   marcarTodosComoClicados() {
     this.formularioMarcacao.markAllAsTouched();
   }
-
 
 
   protected readonly Marcacao = Marcacao;

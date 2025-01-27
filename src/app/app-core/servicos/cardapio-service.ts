@@ -22,12 +22,6 @@ export class CardapioService extends Dexie {
     this.cardapioDB = this.table('cardapios');
   }
 
-  addCardapio(marcacao: string) {
-    this.cardapios.push(marcacao);
-    console.log("CARDAPIO ADICIONADO",
-      this.cardapios);
-  }
-
   async adicionarCardapio(cardapio: Cardapio): Promise<number> {
     return await this.cardapioDB.add(cardapio);
   }
@@ -37,11 +31,12 @@ export class CardapioService extends Dexie {
   }
 
   async buscarCardapio(): Promise<Cardapio[]> {
+    this.populartabela();
     return await this.cardapioDB.toArray();
   }
 
 
-  populartabela(){
+  populartabela() {
 
     let c1: Cardapio = new Cardapio(
       0,
@@ -113,6 +108,8 @@ export class CardapioService extends Dexie {
     this.adicionarCardapio(c5);
     this.adicionarCardapio(c6);
     this.adicionarCardapio(c7);
+
+    console.log('CHAMARAM O POPULAR TABELA NO CARDAPIO SERVICE');
   }
 
 

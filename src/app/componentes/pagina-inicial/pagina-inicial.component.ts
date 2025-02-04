@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Cardapio} from "../../app-core/model/Cardapio";
 import {CardapioService} from "../../app-core/servicos/cardapio-service";
-import {CardapioComponent} from "../cardapio/cardapio.component";
 
 @Component({
   selector: 'app-pagina-inicial',

@@ -41,8 +41,6 @@ export class MarcarComponent implements OnInit {
 
   i: number = 0;
 
-  marcacoes: Marcacao [] = [];
-
   formularioMarcacao: FormGroup;
 
   private fb: FormBuilder;
@@ -85,14 +83,15 @@ export class MarcarComponent implements OnInit {
           undefined
         );
 
-        this.marcacaoService.adicionarMarcacao(novaMarcacao).then(resposta => {
-          if (resposta > 0) {
+        this.marcacaoService.adicionarMarcacao(novaMarcacao).subscribe(
+          (resposta) => {
             swal.fire('sucesso', 'Agendamento realizado com sucesso!', 'success');
             this.formularioMarcacao.reset();
+          },
+          (erro) => {
+            swal.fire('Erro', 'Não foi possivel realizar o agendamento.', 'error');
           }
-        }).catch(error => {
-          swal.fire('Erro', 'Não foi possivel realizar o agendamento.', 'error');
-        })
+        );
 
       } else {
         swal.fire('Alerta', 'Não foi possivel realizar o agendamento pois já passou do horario!', 'warning');

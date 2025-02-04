@@ -11,6 +11,7 @@ import { VisualizarMarcacoesComponent } from './componentes/visualizar-marcacoes
 import { MarcarComponent } from './componentes/marcar/marcar.component';
 import { CardapioComponent } from './componentes/cardapio/cardapio.component';
 import {NgOptimizedImage} from "@angular/common";
+import { HttpClientModule } from '@angular/common/http'; // Importando o HttpClientModule
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {NgOptimizedImage} from "@angular/common";
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        HttpClientModule  // Adicionando o HttpClientModule aqui
     ],
   providers: [],
   bootstrap: [AppComponent]

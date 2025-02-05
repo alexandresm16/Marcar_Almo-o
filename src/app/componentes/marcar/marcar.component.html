@@ -1,0 +1,73 @@
+<div>
+  <section class="border-top border-dark col-md-12">
+    <h1 class="text-center mt-5 title">Insira as informações a baixo <br> para realizar o agendamento do
+      almoço:</h1>
+    <div class="col-md-4 offset-md-4">
+      <div class="mt-5 p-4 container border rounded border-dark back">
+        <form [formGroup]="formularioMarcacao"
+              (ngSubmit)="salvarMarcacao()">
+          <div class="form-row">
+
+            <div class="mb-3 col-md-12">
+              <label for="nome" class="form-label">
+                <b>Nome:</b>
+              </label>
+              <input type="text" class="form-control" id="nome" formControlName="nome">
+              <div class="text-danger"
+                   *ngIf="isCampovalido('nome')">
+                Campo Obrigatório!
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-12">
+              <label for="setor" class="form-label">
+                <b>Setor:</b>
+              </label>
+              <input type="text" class="form-control" id="setor" formControlName="setor">
+              <div class="text-danger"
+                   *ngIf="isCampovalido('setor')">
+                Campo Obrigatório!
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="tipo" class="form-label">
+                <b>Função:</b>
+              </label>
+              <select class="custom-select mr-sm-2" id="tipo" formControlName="tipo">
+                <option value="Colaborador">Colaborador</option>
+                <option value="Residente">Residente</option>
+                <option value="Aluno">Aluno</option>
+              </select>
+              <div class="text-danger"
+                   *ngIf="isCampovalido('tipo')">
+                Campo Obrigatório!
+              </div>
+            </div>
+
+            <div class="mb-3 col-md-6">
+              <label for="ramal" class="form-label">
+                <b>Ramal:</b>
+              </label>
+              <input type="text" class="form-control" id="ramal"
+                     formControlName="ramal">
+              <div class="text-danger"
+                   *ngIf="isCampovalido('ramal')">
+                Campo Obrigatório!
+              </div>
+            </div>
+          </div>
+          <div class="pt-3 text-center">
+            <button class="btn btn-success btn-lg" type="submit" [disabled]="formularioMarcacao.invalid">
+              AGENDAR
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container" style="width: 100%; height: 340px">
+    </div>
+  </section>
+
+</div>

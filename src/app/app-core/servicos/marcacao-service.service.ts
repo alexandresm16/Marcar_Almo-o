@@ -10,7 +10,7 @@ import swal from "sweetalert2";
   providedIn: 'root',
 })
 export class MarcacaoService {
-  private apiUrl = 'http://localhost:3000/marcacao'; // URL da API no backend (ajuste se necessário)
+  private apiUrl = 'http://192.168.1.24:3000/marcacao'; // URL da API no backend (ajuste se necessário)
 
   constructor(private http: HttpClient) {}
 

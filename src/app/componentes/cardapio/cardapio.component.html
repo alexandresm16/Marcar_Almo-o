@@ -1,20 +1,20 @@
 <section class="py-5 col-md-12 row justify-content-center text-center back">
 
-  <h1 class="py-4 mb-5 title col-md-12"><u>Cardapio da Semana</u></h1>
+  <h1 class="py-4 mb-5 title col-md-12"><u>CARDAPIO DA SEMANA</u></h1>
 
   <div *ngFor="let m of cardapioSemana; let i = index">
 
     <div class="m-2">
-      <div class="card border-success" style="width: 12rem; box-shadow: yellowgreen 2px 2px;">
+      <div class="card border-success" style="width: 14rem;">
         <div class="card-header">
           <h5>{{ m.dia }}</h5>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item" style="min-height: 3em;">{{ m.carboidrato }}</li>
-          <li class="list-group-item" style=" min-height: 3em;">{{ m.proteina }}</li>
-          <li class="list-group-item" style="min-height: 3em;">{{ m.complemento }}</li>
-          <li class="list-group-item" style="min-height: 3em;">{{ m.salada }}</li>
-          <li class="list-group-item" style="min-height: 3em;">
+          <li class="list-group-item" >{{ m.carboidrato }}</li>
+          <li class="list-group-item" >{{ m.proteina }}</li>
+          <li class="list-group-item" >{{ m.complemento }}</li>
+          <li class="list-group-item" >{{ m.salada }}</li>
+          <li class="list-group-item" >
             <button class="btn btn-info rounded-circle"
                     (click)="carregarDadosCardapio(m)">
               <i class="fas fa-edit"></i>

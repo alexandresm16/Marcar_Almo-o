@@ -25,15 +25,15 @@
       <div *ngFor="let m of cardapioSemana; let i = index">
 
         <div class="m-2 pb-5">
-          <div class="card border-info" style="width: 12rem; box-shadow: yellowgreen 2px 2px;">
+          <div class="card border-success" style="width: 12rem;">
             <div class="card-header">
               <h5><i><u>{{ m.dia }}</u></i></h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="min-height: 3em;">{{ m.carboidrato }}</li>
-              <li class="list-group-item" style=" min-height: 3em;">{{ m.proteina }}</li>
-              <li class="list-group-item" style="min-height: 3em;">{{ m.complemento }}</li>
-              <li class="list-group-item" style="min-height: 3em;">{{ m.salada }}</li>
+              <li class="list-group-item" >{{ m.carboidrato }}</li>
+              <li class="list-group-item" >{{ m.proteina }}</li>
+              <li class="list-group-item" >{{ m.complemento }}</li>
+              <li class="list-group-item" >{{ m.salada }}</li>
             </ul>
           </div>
         </div>

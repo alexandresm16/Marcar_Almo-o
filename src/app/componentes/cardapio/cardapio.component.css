@@ -2,4 +2,12 @@
   background-color: cornflowerblue;
   height: 100%;
   width: 100%;
+  font-family: "Times New Roman", Times, serif;
+}
+
+ul > li {
+  align-content: center;
+  min-height: 4em;
+  max-height: 4em;
+  font-size: 1em;
 }

@@ -1,5 +1,5 @@
 .back {
-  background-color: cornflowerblue;
+  background: linear-gradient(to top, rgba(100,149,237,0.6) 35%, rgba(100,149,237,0.2) 85%);
   height: 100%;
   width: 100%;
   font-family: "Times New Roman", Times, serif;

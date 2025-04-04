@@ -23,7 +23,7 @@ export class MarcarComponent implements OnInit {
 
   private dataHora: Date = new Date();
   private data = this.dataBrasileira
-  private horaLimiteString: string = '09:30:00';
+  private horaLimiteString: string = '19:30:00';
 
   public formularioAberto: boolean = this.verificarHorario();
 
@@ -85,7 +85,12 @@ export class MarcarComponent implements OnInit {
 
         this.marcacaoService.adicionarMarcacao(novaMarcacao).subscribe(
           (resposta) => {
-            swal.fire('sucesso', 'Agendamento realizado com sucesso!', 'success');
+            swal.fire({
+              title: 'Sucesso',
+              html: `Agendamento realizado com sucesso! <br> Seu comprovante é: <br> <strong style="color:rgb(0, 100, 100); font-size: 18px;">${novaMarcacao.data}</strong>`,
+              icon: 'success',
+              confirmButtonText: 'Fechar',
+            });
             this.formularioMarcacao.reset();
           },
           (erro) => {

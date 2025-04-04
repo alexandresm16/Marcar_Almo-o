@@ -6,13 +6,16 @@
       </h1>
       <p class="py-2 lead text-center text-capitalize">
         Bem-vindo ao Sistema de gerenciamento
-        de agendamento de refeição!
+        de agendamento de refeições!
       </p>
       <div class="py-4 pb-2">
-        <button class="btn btn-success btn-lg" [routerLink]="'/marcar'">Ir para Agendamento</button>
+        <button class="btn-estilo" [routerLink]="'/marcar'">Ir para Agendamento</button>
       </div>
+      <span class="p-3">
+        <a class="text-dark" href="#banners"><i>Informativos</i></a>
+      </span>
       <p class="mt-5 lead text-center text-capitalize">
-        <u>Horario para agendamento de almoço 06:00h ás 09:30h.</u>
+        <u>Horário para agendamento do almoço: 06:00h às 09:30h.</u>
       </p>
     </div>
   </section>
@@ -20,7 +23,8 @@
   <section class="border-bottom border-top border-dark col-md-12">
     <div class="py-5 col-md-12 row justify-content-center text-center">
 
-      <h1 class="pb-5 pt-1 title col-md-12"><i>Cardapio da semana</i></h1>
+      <h1 class="pt-1 title col-md-12"><i>Cardápio da semana</i></h1>
+      <h5 class="pb-5 title col-md-12"><u>Sujeito a alterações</u></h5>
 
       <div *ngFor="let m of cardapioSemana; let i = index">
 
@@ -30,15 +34,29 @@
               <h5><i><u>{{ m.dia }}</u></i></h5>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item" >{{ m.carboidrato }}</li>
-              <li class="list-group-item" >{{ m.proteina }}</li>
-              <li class="list-group-item" >{{ m.complemento }}</li>
-              <li class="list-group-item" >{{ m.salada }}</li>
+              <li class="list-group-item">{{ m.carboidrato }}</li>
+              <li class="list-group-item">{{ m.proteina }}</li>
+              <li class="list-group-item">{{ m.complemento }}</li>
+              <li class="list-group-item">{{ m.salada }}</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <h1 id="banners" class="text-center pt-5"><u>Informativos:</u></h1>
+  <section class="col-md-12 mt-5 banners">
+    <div class="col-md-5 banner1"></div>
+    <div class="col-md-5 banner2"></div>
+  </section>
+  <section class="col-md-12 mt-5 banners">
+    <div class="col-md-5 banner3"></div>
+    <a class="col-md-5 banner4" href="http://192.168.1.3/callsystem/"></a>
+  </section>
+
+
+  <div class="container" style="width: 100%; height: 100px">
+  </div>
 
 </div>

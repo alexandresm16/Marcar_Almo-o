@@ -1,7 +1,91 @@
-section {
-  background: linear-gradient(to top, rgba(10,110,115,0.3) 35%, rgba(255,153,204,0.3) 85%);
+.back {
+  background: linear-gradient(to top, rgba(10, 110, 115, 0.6) 35%, rgba(10, 110, 115, 0.2) 85%);
+  height: 100vh;
+  position: relative;
+  padding: 0;
 }
 
-.back {
-  background-color: rgba(211, 211, 211, 0.5);
+.marcar {
+  padding-top: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.icone {
+  text-align: center;
+
+}
+
+.login-blur {
+  -webkit-backdrop-filter: blur(500px);
+  backdrop-filter: blur(50px);
+}
+
+.banner-lateral-esquerda,
+.banner-lateral-direita {
+  position: absolute;
+  overflow-y: auto;
+  text-align: justify;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  width: 12%;
+  padding: 10px;
+  background-image: linear-gradient(to bottom, rgba(85, 103, 130, 0.3), rgba(76, 127, 146, 0.3),
+      rgba(85, 151, 150, 0.3), rgba(121, 171, 143, 0.3), rgba(172, 187, 138, 0.3));
+}
+
+.banner-lateral-esquerda div,
+.banner-lateral-direita div {
+  margin-top: 8vh;
+  padding: 10px;
+}
+
+.banner-lateral-esquerda img,
+.banner-lateral-direita img {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+}
+
+/*Altera a largura dos banners laterais */
+
+
+
+@media (max-width: 1599px) {
+
+  .banner-lateral-esquerda,
+  .banner-lateral-direita {
+    display: none;
+  }
+  .marcar {
+    width: 100%;
+    height: 100%;
+  }
+  .back{
+    padding-bottom: 130vh;
+  }
+}
+
+/* Em telas muito pequenas, os banners podem desaparecer para dar mais espaço ao conteúdo */
+@media (max-width: 768px) {
+
+  .banner-lateral-esquerda,
+  .banner-lateral-direita {
+    display: none;
+    /* Esconde os banners */
+  }
+}
+
+/* Em telas pequenas, o conteúdo central ocupa mais espaço */
+@media (max-width: 576px) {
+  .marcar {
+    width: 100%;
+    height: 100%;
+  }
+  .back{
+    padding-bottom: 130vh;
+  }
 }

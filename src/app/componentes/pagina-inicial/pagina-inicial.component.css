@@ -1,14 +1,113 @@
-
-
 .back {
-  background: linear-gradient(to top, rgba(10,110,115,0.6) 35%, rgba(10,110,115,0.2) 85%);
-
+  background: linear-gradient(to top, rgba(10, 110, 115, 0.6) 35%, rgba(10, 110, 115, 0.2) 85%);
   font-family: "Times New Roman", Times, serif;
 }
 
-ul > li {
+.btn-estilo {
+  --black: black;
+  --bg: green;
+  --hover-bg: rgb(10, 110, 115);
+  --hover-text: rgb(0, 50, 50);
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid var(--bg);
+  border-radius: 4px;
+  padding: 0.8em 2em;
+  background: var(--bg);
+  transition: 0.2s;
+}
+
+.btn-estilo:hover {
+  transform: translate(-0.25rem, -0.25rem);
+  background: var(--hover-bg);
+  box-shadow: 0.25rem 0.25rem var(--black);
+}
+
+.btn-estilo:active {
+  transform: translate(0);
+  box-shadow: none;
+}
+
+
+ul>li {
   align-content: center;
   min-height: 4em;
   max-height: 4em;
   font-size: 1em;
+}
+
+.banners {
+  min-height: 40vh;
+  /* Garante que a altura mínima seja 50% da altura da tela */
+  max-height: 50vh;
+  /* Garante que a altura máxima seja 100% da altura da tela */
+  display: flex;
+  /* Flexbox para os banners */
+  justify-content: space-evenly;
+  /* Espaço entre os banners */
+  flex-wrap: wrap;
+  /* Permite que os banners se ajustem em telas pequenas */
+  gap: 20px;
+  /* Espaçamento entre os banners */
+}
+
+.banner1,
+.banner2,
+.banner3,
+.banner4 {
+  flex: 1;
+  /* Cada banner ocupa uma parte igual do espaço */
+  border-radius: 50px;
+  background-size: cover;
+  background-repeat: round;
+}
+
+.banner1 {
+  background-image: url(../../../assets/CIPA.png);
+}
+
+.banner2 {
+  background-image: url(../../../assets/CCIH.png);
+}
+
+.banner3 {
+  background-image: url(../../../assets/sesmt-enf.png);
+}
+
+.banner4 {
+  background-image: url(../../../assets/ti.png);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+  .banners {
+    flex-direction: column;
+    /* Empilha os banners em telas pequenas */
+    justify-content: center;
+    /* Centraliza os banners verticalmente */
+  }
+
+  .banner1,
+  .banner2,
+  .banner3,
+  .banner4 {
+    flex: 1 1 100%;
+    /* Cada banner ocupa 100% da largura da tela em telas pequenas */
+    margin-bottom: 20px;
+    /* Adiciona um espaçamento entre os banners */
+    border-radius: 10px;
+    /* Altera o raio da borda para telas menores */
+  }
+}
+
+/* Ajustes para telas ainda menores (como celulares) */
+@media (max-width: 480px) {
+
+  .banner1,
+  .banner2,
+  .banner3,
+  .banner4 {
+    font-size: medium;
+    /* Reduz o tamanho da fonte para telas muito pequenas */
+  }
 }

@@ -1,4 +1,6 @@
 .cabecalho {
+  margin-top: 0;
+  padding-top: 0;
   position: fixed;
   width: 100%;
   z-index: 999;

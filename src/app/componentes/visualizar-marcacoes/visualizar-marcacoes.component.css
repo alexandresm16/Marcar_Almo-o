@@ -1,3 +1,13 @@
+.back {
+  padding-top: 50px;
+}
+
 .btn-arredondamento{
   border-radius: 20px;
+}
+
+@media (max-width: 1599px) {
+  h2{
+    display: flex;
+  }
 }

@@ -56,7 +56,8 @@ export class MarcarComponent implements OnInit {
       setor: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       ramal: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(5)]],
       data: [''],
-      tipo: ['', Validators.required]
+      tipo: ['', Validators.required],
+      termo: ['', Validators.requiredTrue]
     });
   }
 
@@ -113,7 +114,7 @@ export class MarcarComponent implements OnInit {
     const campo: any = this.formularioMarcacao.get(inputNome);
     return campo && campo.touched && campo.invalid;
   }
-
+  
   marcarTodosComoClicados() {
     this.formularioMarcacao.markAllAsTouched();
   }

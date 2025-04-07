@@ -18,8 +18,8 @@
   <section class="marcar col-md-12">
     <div class="col-md-8">
       <h1 class="text-center mt-5 title">Insira as informações abaixo <br> para realizar o agendamento do almoço:</h1>
-      <div class="pt-3 col-md-6 offset-md-3">
-        <div class="mt-5 p-4 container border rounded border-dark login-blur">
+      <div class="col-md-6 offset-md-3">
+        <div class="mt-4 p-4 container border rounded border-dark login-blur">
           <form [formGroup]="formularioMarcacao" (ngSubmit)="salvarMarcacao()">
             <div class="form-row">
 
@@ -65,6 +65,16 @@
                 <div class="text-danger" *ngIf="isCampovalido('ramal')">
                   Campo Obrigatório!
                 </div>
+              </div>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="termo" id="termo"
+                formControlName="termo">
+              <label class="form-check-label" for="flexCheckDefault">
+                <i>Declaro que li e concordo com os termos e condições para agendar a refeição.</i>
+              </label>
+              <div class="text-danger" *ngIf="isCampovalido('termo')">
+                Campo Obrigatório!
               </div>
             </div>
             <div class="pt-3 text-center">

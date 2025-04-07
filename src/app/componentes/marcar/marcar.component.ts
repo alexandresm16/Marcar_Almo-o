@@ -23,7 +23,7 @@ export class MarcarComponent implements OnInit {
 
   private dataHora: Date = new Date();
   private data = this.dataBrasileira
-  private horaLimiteString: string = '19:30:00';
+  private horaLimiteString: string = '09:30:00';
 
   public formularioAberto: boolean = this.verificarHorario();
 
@@ -114,7 +114,7 @@ export class MarcarComponent implements OnInit {
     const campo: any = this.formularioMarcacao.get(inputNome);
     return campo && campo.touched && campo.invalid;
   }
-  
+
   marcarTodosComoClicados() {
     this.formularioMarcacao.markAllAsTouched();
   }

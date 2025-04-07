@@ -2,12 +2,22 @@
   padding-top: 50px;
 }
 
-.btn-arredondamento{
-  border-radius: 20px;
-}
-
 @media (max-width: 1599px) {
-  h2{
+  h2 {
     display: flex;
   }
+}
+
+.dropdown-menu {
+  border: 0px rgba(255, 255, 255, 0);
+  background-color: #6c757d;
+  padding: 0;
+  margin: 0;
+  margin-left: 0.5vh;
+  width: 50%;
+  text-align: left;
+}
+
+.dropdown-menu button{
+  width: 100%;
 }

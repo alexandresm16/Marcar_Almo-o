@@ -33,7 +33,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
   constructor(private marcacaoService: MarcacaoService,
               private fb: FormBuilder) {
 
-    this.marcacaoService.buscarMarcacao().subscribe(marcacoes => this.marcacoes = marcacoes);
+    this.marcacaoService.buscarMarcacaoDiaCorrente().subscribe(marcacoes => this.marcacoes = marcacoes);
 
     this.formularioMarcacao = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
@@ -208,6 +208,10 @@ export class VisualizarMarcacoesComponent implements OnInit {
 
   exportarPdf() {
     this.marcacaoService.exportarParaPDF();
+  }
+
+  exportarExcel() {
+    this.marcacaoService.exportarParaExcel();
   }
 
 

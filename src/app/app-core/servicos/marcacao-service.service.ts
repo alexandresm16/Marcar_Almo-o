@@ -5,6 +5,7 @@ import { Marcacao } from '../model/Marcacao';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import swal from "sweetalert2";
+import * as XLSX from 'xlsx';
 
 @Injectable({
   providedIn: 'root',
@@ -95,5 +96,48 @@ export class MarcacaoService {
       }
     );
   }
+
+  // Exportar marcações para Excel
+exportarParaExcel(): void {
+  // Chama o serviço para obter as marcações do servidor
+  this.buscarMarcacaoDiaCorrente().subscribe(
+    (marcacoes: Marcacao[]) => {
+      // Criação de um array com as colunas da tabela
+      const dados: any[] = marcacoes.map(marcacao => [
+        marcacao.nome,
+        marcacao.setor,
+        this.converterData(marcacao.data),
+        marcacao.ramal,
+        marcacao.tipo,
+      ]);
+
+      // Adiciona o cabeçalho da tabela
+      const cabecalho = [['Nome', 'Setor', 'Data Inclusão', 'Ramal', 'Tipo']];
+      
+      // Junta o cabeçalho com os dados da tabela
+      const tabela = cabecalho.concat(dados);
+
+      // Cria uma planilha (worksheet) a partir dos dados
+      const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(tabela);
+
+      // Cria uma nova pasta de trabalho (workbook)
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      
+      // Adiciona a planilha à pasta de trabalho
+      XLSX.utils.book_append_sheet(wb, ws, 'Marcações');
+
+      // Exporta a pasta de trabalho para um arquivo Excel
+      XLSX.writeFile(wb, 'marcacoes.xlsx');
+    },
+    (erro) => {
+      console.error('Erro ao buscar as marcações:', erro); // Log de erro
+      swal.fire('Erro', 'Não foi possível obter as marcações para exportação.', 'error');
+    }
+  );
+}
+
+
+
+
 
 }

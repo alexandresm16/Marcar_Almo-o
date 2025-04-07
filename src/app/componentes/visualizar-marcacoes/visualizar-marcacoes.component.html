@@ -13,9 +13,31 @@
         <i class="fa-solid fa-circle-check"></i>
         <u>Total: {{ marcacoes.length }}</u>
       </h5>
+
+      <form [formGroup]="buscarMarcacao" (ngSubmit)="buscarPorData()">
+        <div class="d-flex">
+          <div class="">
+            <label for="datainicial">Data inicial</label>
+            <input type="datetime-local" class="form-control" id="datainicial" formControlName="datainicial">
+            <div class="text-danger" *ngIf="isCampovalido('datainicial')">Campo Obrigatório!</div>
+          </div>
+          <div class="">
+            <label for="datafinal">Data final</label>
+            <input type="datetime-local" class="form-control" id="datafinal" formControlName="datafinal">
+            <div class="text-danger" *ngIf="isCampovalido('datafinal')">Campo Obrigatório!</div>
+          </div>
+          <div style="padding-top: 3.5vh; padding-left: 1vh;">
+            <button type="submit" class="btn rounded-circle">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+
       <div class="btn-group dropright">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
           <i class="fa fa-file-text"></i>
           Exportar Lista ( Total: {{ marcacoes.length }} )
         </button>
@@ -116,9 +138,9 @@
             </div>
           </div>
           <div class="modal-footer justify-content-center">
+            <button class="btn btn-success" type="submit" [disabled]="formularioMarcacao.invalid">Salvar</button>
             <button class="btn btn-secondary" type="button" data-bs-dismiss="modal"
               (click)="closeModal()">Fechar</button>
-            <button class="btn btn-success" type="submit" [disabled]="formularioMarcacao.invalid">Salvar</button>
           </div>
         </form>
       </div>

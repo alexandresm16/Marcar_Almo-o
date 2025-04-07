@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MarcacaoService} from "../../app-core/servicos/marcacao-service.service";
-import {Marcacao} from "../../app-core/model/Marcacao";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MarcacaoService } from "../../app-core/servicos/marcacao-service.service";
+import { Marcacao } from "../../app-core/model/Marcacao";
 import swal from "sweetalert2";
+import { Data } from 'popper.js';
 
 declare var $: any;
 
@@ -18,20 +19,43 @@ export class VisualizarMarcacoesComponent implements OnInit {
 
   private dataBrasileira: string = (() => {
     let dataHora: Date = new Date();
-    const options = {timeZone: "America/Sao_Paulo", hour12: false};
+    const options = { timeZone: "America/Sao_Paulo", hour12: false };
     const dataBrasil = dataHora.toLocaleString("sv-SE", options); // "sv-SE" retorna no formato ISO
     const [date, time] = dataBrasil.split(" ");
     return `${date}T${time.slice(0, 5)}`; // Formato final: yyyy-MM-ddTHH:mm
   })();
 
+  private inicioDia: string = (() => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0'); // Adiciona zero à esquerda
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    // Formata no padrão 'YYYY-MM-DDTHH:mm'
+    return `${year}-${month}-${day}T00:00`;
+  })();
+
+  private FinalDia: string = (() => {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0'); // Adiciona zero à esquerda
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
+    const year = now.getFullYear();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    // Formata no padrão 'YYYY-MM-DDTHH:mm'
+    return `${year}-${month}-${day}T23:59`;
+  })();
+
   private data = this.dataBrasileira
 
-  marcacoes: Marcacao [] = [];
+  marcacoes: Marcacao[] = [];
 
   formularioMarcacao: FormGroup;
+  buscarMarcacao: FormGroup;
 
   constructor(private marcacaoService: MarcacaoService,
-              private fb: FormBuilder) {
+    private fb: FormBuilder) {
 
     this.marcacaoService.buscarMarcacaoDiaCorrente().subscribe(marcacoes => this.marcacoes = marcacoes);
 
@@ -43,11 +67,19 @@ export class VisualizarMarcacoesComponent implements OnInit {
       tipo: ['', Validators.required],
       id: [0]
     });
+
+
+    // Inicializando o formulário de busca de marcação por data
+    this.buscarMarcacao = this.fb.group({
+      datainicial: [this.inicioDia, Validators.required],
+      datafinal: [this.FinalDia, Validators.required]
+    });
   }
 
   ngOnInit(): void {
     this.listarMarcacoesHoje();
-    console.log(this.dataBrasileira)
+    console.log("Data formatada")
+    console.log(this.inicioDia)
   }
 
   listarMarcacoes() {
@@ -57,6 +89,17 @@ export class VisualizarMarcacoesComponent implements OnInit {
 
   listarMarcacoesHoje() {
     this.marcacaoService.buscarMarcacaoDiaCorrente().subscribe(marcacoes => this.marcacoes = marcacoes);
+  }
+
+  buscarMarcacoesPorPeriodo() {
+    if (this.buscarMarcacao.valid) {
+      let datainicial = this.buscarMarcacao.value.datainicial;
+      let datafinal = this.buscarMarcacao.value.datafinal;
+
+      this.marcacaoService.buscarDiaMarcacao(datainicial, datafinal).subscribe(marcacoes => {
+        this.marcacoes = marcacoes;
+      });
+    }
   }
 
   openModal() {
@@ -126,34 +169,39 @@ export class VisualizarMarcacoesComponent implements OnInit {
     }
   }
 
+  buscarPorData() {
+    this.buscarMarcacoesPorPeriodo();
+
+  }
+
 
 
 
   excluirTarefa(id: number) {
-  swal.fire({
-    title: 'Tem certeza que deseja excluir?',
-    text: 'Você não poderá reverter essa decisão!',
-    icon: 'warning',
-    showCancelButton: true,
-    cancelButtonColor: '#d33',
-    confirmButtonColor: '#3085d6',
-  }).then((value) => {
-    if (value.isConfirmed) {
-      this.marcacaoService.removerMarcacao(id).subscribe(
-        () => {
-          // Sucesso na exclusão
-          swal.fire('Excluído!', 'A marcação foi excluída com sucesso.', 'success');
-          this.listarMarcacoesHoje(); // Atualiza a lista de marcações após a exclusão
-        },
-        (erro) => {
-          // Erro ao tentar excluir
-          swal.fire('Erro', 'Não foi possível excluir a marcação. Tente novamente.', 'error');
-          console.error('Erro ao remover marcação:', erro); // Log de erro para depuração
-        }
-      );
-    }
-  });
-}
+    swal.fire({
+      title: 'Tem certeza que deseja excluir?',
+      text: 'Você não poderá reverter essa decisão!',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonColor: '#d33',
+      confirmButtonColor: '#3085d6',
+    }).then((value) => {
+      if (value.isConfirmed) {
+        this.marcacaoService.removerMarcacao(id).subscribe(
+          () => {
+            // Sucesso na exclusão
+            swal.fire('Excluído!', 'A marcação foi excluída com sucesso.', 'success');
+            this.listarMarcacoesHoje(); // Atualiza a lista de marcações após a exclusão
+          },
+          (erro) => {
+            // Erro ao tentar excluir
+            swal.fire('Erro', 'Não foi possível excluir a marcação. Tente novamente.', 'error');
+            console.error('Erro ao remover marcação:', erro); // Log de erro para depuração
+          }
+        );
+      }
+    });
+  }
 
 
   carregarDadosMarcacao(editarMarcacao: Marcacao) {
@@ -207,11 +255,11 @@ export class VisualizarMarcacoesComponent implements OnInit {
 
 
   exportarPdf() {
-    this.marcacaoService.exportarParaPDF();
+    this.marcacaoService.exportarParaPDF(this.buscarMarcacao.value.datainicial, this.buscarMarcacao.value.final);
   }
 
   exportarExcel() {
-    this.marcacaoService.exportarParaExcel();
+    this.marcacaoService.exportarParaExcel(this.buscarMarcacao.value.datainicial, this.buscarMarcacao.value.final);
   }
 
 

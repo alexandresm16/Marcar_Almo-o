@@ -32,6 +32,12 @@ export class MarcacaoService {
     return this.http.get<Marcacao[]>(`${this.apiUrl}/dia/${dataHoje}`);
   }
 
+  buscarDiaMarcacao(datainicial: string, datafinal: string): Observable<Marcacao[]> {
+    // Fazendo a requisição HTTP para a API
+    console.log(datainicial + "e" + datafinal);
+    return this.http.get<Marcacao[]>(`${this.apiUrl}/periodo/${datainicial}/${datafinal}`);
+  }
+
   // Remover uma marcação
   removerMarcacao(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
@@ -68,9 +74,9 @@ export class MarcacaoService {
   }
 
   // Exportar marcações para PDF
-  exportarParaPDF(): void {
+  exportarParaPDF(datainicial: string, datafinal: string): void {
     // Chama o serviço para obter as marcações do servidor
-    this.buscarMarcacaoDiaCorrente().subscribe(
+    this.buscarDiaMarcacao(datainicial, datafinal ).subscribe(
       (marcacoes: Marcacao[]) => {
         // Quando as marcações são obtidas com sucesso, gera o PDF
         const doc: any = new jsPDF();
@@ -98,9 +104,9 @@ export class MarcacaoService {
   }
 
   // Exportar marcações para Excel
-exportarParaExcel(): void {
+exportarParaExcel(datainicial: string, datafinal: string): void {
   // Chama o serviço para obter as marcações do servidor
-  this.buscarMarcacaoDiaCorrente().subscribe(
+  this.buscarDiaMarcacao(datainicial, datafinal ).subscribe(
     (marcacoes: Marcacao[]) => {
       // Criação de um array com as colunas da tabela
       const dados: any[] = marcacoes.map(marcacao => [

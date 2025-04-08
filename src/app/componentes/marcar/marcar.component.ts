@@ -95,18 +95,18 @@ export class MarcarComponent implements OnInit {
             this.formularioMarcacao.reset();
           },
           (erro) => {
-            swal.fire('Erro', 'Não foi possivel realizar o agendamento.', 'error');
+            swal.fire('Erro', 'Não foi possível realizar o agendamento.', 'error');
           }
         );
 
       } else {
-        swal.fire('Alerta', 'Não foi possivel realizar o agendamento pois já passou do horario!', 'warning');
+        swal.fire('Alerta', 'Não foi possível realizar o agendamento pois já passou do horário!', 'warning');
       }
 
     } else {
       console.log("CAMPOS INVALIDOS ENCONTRADOS");
       this.marcarTodosComoClicados();
-      swal.fire('Cuidado', 'Alguns campos estão invalidos', 'warning');
+      swal.fire('Cuidado', 'Alguns campos estão inválidos', 'warning');
     }
   }
 

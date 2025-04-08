@@ -18,16 +18,16 @@
         <div class="d-flex">
           <div class="">
             <label for="datainicial">Data inicial</label>
-            <input type="datetime-local" class="form-control" id="datainicial" formControlName="datainicial">
+            <input type="datetime-local" class="form-control" id="datainicial" formControlName="datainicial" [(ngModel)]="buscarMarcacao.value.datainicial">
             <div class="text-danger" *ngIf="isCampovalido('datainicial')">Campo Obrigatório!</div>
           </div>
           <div class="">
             <label for="datafinal">Data final</label>
-            <input type="datetime-local" class="form-control" id="datafinal" formControlName="datafinal">
+            <input type="datetime-local" class="form-control" id="datafinal" formControlName="datafinal" [(ngModel)]="buscarMarcacao.value.datafinal">
             <div class="text-danger" *ngIf="isCampovalido('datafinal')">Campo Obrigatório!</div>
           </div>
           <div style="padding-top: 3.5vh; padding-left: 1vh;">
-            <button type="submit" class="btn rounded-circle">
+            <button type="submit" class="btn rounded-circle border border-dark">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </div>

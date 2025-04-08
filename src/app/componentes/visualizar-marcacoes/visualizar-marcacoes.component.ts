@@ -36,7 +36,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
     return `${year}-${month}-${day}T00:00`;
   })();
 
-  private FinalDia: string = (() => {
+  private finalDia: string = (() => {
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0'); // Adiciona zero à esquerda
     const month = String(now.getMonth() + 1).padStart(2, '0'); // Mês começa em 0
@@ -72,7 +72,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
     // Inicializando o formulário de busca de marcação por data
     this.buscarMarcacao = this.fb.group({
       datainicial: [this.inicioDia, Validators.required],
-      datafinal: [this.FinalDia, Validators.required]
+      datafinal: [this.finalDia, Validators.required]
     });
   }
 
@@ -98,7 +98,22 @@ export class VisualizarMarcacoesComponent implements OnInit {
 
       this.marcacaoService.buscarDiaMarcacao(datainicial, datafinal).subscribe(marcacoes => {
         this.marcacoes = marcacoes;
+
+        swal.fire('Sucesso', 'Pesquisa realizada com sucesso!', 'success');
+        console.error('Agendamentos');
+
+        if (marcacoes.length <= 0) {
+          swal.fire('Alerta', 'Sem agendamentos para o dia escolhido', 'warning');
+          console.error('Alerta ao buscar agendamentos');
+        }
+
       });
+    } else {
+      swal.fire('Data Incorreta!', 'Não é possível buscar a data informada, preencha os campos corretamente e tente de novo!', 'warning');
+      console.error('Alerta ao buscar marcações');
+      this.listarMarcacoesHoje();
+      this.buscarMarcacao.value.datainicial = this.inicioDia;
+      this.buscarMarcacao.value.datafinal = this.finalDia
     }
   }
 
@@ -191,7 +206,7 @@ export class VisualizarMarcacoesComponent implements OnInit {
           () => {
             // Sucesso na exclusão
             swal.fire('Excluído!', 'A marcação foi excluída com sucesso.', 'success');
-            this.listarMarcacoesHoje(); // Atualiza a lista de marcações após a exclusão
+            this.buscarMarcacoesPorPeriodo(); // Atualiza a lista de marcações após a exclusão
           },
           (erro) => {
             // Erro ao tentar excluir

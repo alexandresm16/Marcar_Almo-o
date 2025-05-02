@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class CardapioService {
 
-  private apiUrl = 'http://192.168.1.24:3000/cardapio';  // URL do seu backend
+  private apiUrl = 'http://192.168.1.205:3000/cardapio';  // URL do seu backend
 
   constructor(private http: HttpClient) {}
 

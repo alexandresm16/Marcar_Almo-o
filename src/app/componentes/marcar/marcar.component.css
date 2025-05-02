@@ -31,7 +31,7 @@
   display: flex;
   top: 0;
   bottom: 0;
-  width: 12%;
+  width: 14%;
   padding: 10px;
   background-image: linear-gradient(to bottom, rgba(85, 103, 130, 0.3), rgba(76, 127, 146, 0.3),
       rgba(85, 151, 150, 0.3), rgba(121, 171, 143, 0.3), rgba(172, 187, 138, 0.3));
@@ -50,42 +50,97 @@
   text-align: center;
 }
 
-/*Altera a largura dos banners laterais */
-
-
-
-@media (max-width: 1599px) {
+@media (max-height: 550px) {
+  .back {
+    padding-bottom: 80%;
+  }
 
   .banner-lateral-esquerda,
   .banner-lateral-direita {
-    display: none;
+    width: 16%;
   }
-  .marcar {
-    width: 100%;
-    height: 100%;
+
+  .login {
+    min-width: 150%;
+    margin-left: -25%;
   }
-  .back{
+}
+
+/*Altera a largura dos banners laterais */
+
+@media (max-width: 1599px) and (min-height: 768px) {
+
+  .banner-lateral-esquerda,
+  .banner-lateral-direita {
+    width: 16%;
+  }
+
+  .login {
+    min-width: 150%;
+    margin-left: -25%;
+  }
+
+  .back {
     padding-bottom: 130vh;
   }
 }
 
 /* Em telas muito pequenas, os banners podem desaparecer para dar mais espaço ao conteúdo */
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
 
   .banner-lateral-esquerda,
   .banner-lateral-direita {
     display: none;
     /* Esconde os banners */
   }
+
+  .back {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 30vh;
+  }
+
+  .login {
+    min-width: 200%;
+    margin-left: -50%;
+  }
+}
+
+/* Em telas muito pequenas, os banners podem desaparecer para dar mais espaço ao conteúdo */
+@media (max-width: 767px) {
+
+  .banner-lateral-esquerda,
+  .banner-lateral-direita {
+    display: none;
+    /* Esconde os banners */
+  }
+
+  .back {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 30vh;
+  }
+
+  .login {
+    min-width: 100%;
+    margin-left: 0%;
+  }
 }
 
 /* Em telas pequenas, o conteúdo central ocupa mais espaço */
 @media (max-width: 576px) {
-  .marcar {
+  .back {
     width: 100%;
     height: 100%;
+    padding-bottom: 50vh;
   }
-  .back{
-    padding-bottom: 150vh;
+
+  .marcar {
+    max-width: 100%;
+  }
+
+  .login {
+    min-width: 100%;
+    margin-left: 0;
   }
 }

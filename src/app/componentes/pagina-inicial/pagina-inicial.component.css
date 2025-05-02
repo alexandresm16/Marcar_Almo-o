@@ -28,6 +28,10 @@
   box-shadow: none;
 }
 
+.card {
+  width: 12rem;
+}
+
 
 ul>li {
   align-content: center;
@@ -76,6 +80,22 @@ ul>li {
 
 .banner4 {
   background-image: url(../../../assets/ti.png);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 1500px) {
+  .card {
+    max-width: 14.5rem;
+    min-width: 14.5rem;
+  }
+  ul>li {
+    align-content: center;
+    height: 4rem;
+    font-size: 1em;
+  }
+  .card-header {
+    height: 4rem;
+  }
 }
 
 /* Ajustes para telas menores */

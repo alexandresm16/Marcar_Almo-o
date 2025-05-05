@@ -1,20 +1,20 @@
 <div class="back">
   <section class="pt-5 border-bottom border-top border-dark col-md-12">
     <div class="pt-5 text-center py-2 col-md-12">
-      <h1 class="py-3 text-capitalize">
+      <h1 class="py-3 text-capitalize" data-aos="fade-up" data-aos-duration="1200">
         Sistema para agendamento de refeição
       </h1>
-      <p class="py-2 lead text-center text-capitalize">
+      <p class="py-2 lead text-center text-capitalize" data-aos="fade-up" data-aos-duration="1200">
         Bem-vindo ao Sistema de gerenciamento
         de agendamento de refeições!
       </p>
-      <div class="py-4 pb-2">
+      <div class="py-4 pb-2" data-aos="zoom-in" data-aos-duration="1200">
         <button class="btn-estilo" [routerLink]="'/marcar'">Ir para Agendamento</button>
       </div>
-      <span class="p-3">
+      <span class="p-3" data-aos="fade-up" data-aos-duration="1200">
         <a class="text-dark" href="#banners"><i>Informativos</i></a>
       </span>
-      <p class="mt-5 lead text-center text-capitalize">
+      <p class="mt-5 lead text-center text-capitalize" data-aos="zoom-in" data-aos-duration="1200">
         <u>Horário para agendamento do almoço: 06:00h às 09:30h.</u>
       </p>
     </div>
@@ -23,12 +23,14 @@
   <section class="border-bottom border-top border-dark col-md-12">
     <div class="py-5 col-md-12 row justify-content-center text-center">
 
-      <h1 class="pt-1 title col-md-12"><i>Cardápio da semana</i></h1>
-      <h5 class="pb-5 title col-md-12"><u>Sujeito a alterações</u></h5>
+      <h1 class="pt-1 title col-md-12" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300"><i>Cardápio da
+          semana</i></h1>
+      <h5 class="pb-5 title col-md-12" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300"><u>Sujeito a
+          alterações</u></h5>
 
       <div *ngFor="let m of cardapioSemana; let i = index">
 
-        <div class="m-2 pb-5">
+        <div class="m-2 pb-5" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="800">
           <div class="card border-success">
             <div class="card-header">
               <h5><i><u>{{ m.dia }}</u></i></h5>
@@ -46,14 +48,15 @@
   </section>
 
   <h1 id="banners" class="text-center pt-5"><u>Informativos:</u></h1>
-  <section class="col-md-12 mt-5 banners">
-    <div class="col-md-5 banner1"></div>
-    <div class="col-md-5 banner2"></div>
-  </section>
-  <section class="col-md-12 mt-5 banners">
-    <div class="col-md-5 banner3"></div>
-    <a class="col-md-5 banner4" href="http://192.168.1.3/callsystem/" target="_blank" rel="noopener noreferrer"></a>
-  </section>
+  <div class="row justify-content-center">
+    <section class="col-5 mt-5 banners text-center">
+      <div class="banner2"></div>
+    </section>
+    <section class="col-5 mt-5 banners">
+      <a class="banner4" href="http://192.168.1.3/callsystem/" target="_blank" rel="noopener noreferrer"></a>
+    </section>
+  </div>
+
 
 
   <div class="container" style="width: 100%; height: 100px">

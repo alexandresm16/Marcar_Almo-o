@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Cardapio} from "../../app-core/model/Cardapio";
 import {CardapioService} from "../../app-core/servicos/cardapio-service";
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -16,6 +17,10 @@ export class PaginaInicialComponent implements OnInit {
   }
 
   ngOnInit(): void { 
+    AOS.init({
+      duration: 1000,
+      once: true // para rodar a animação só uma vez
+    });
    console.log("Cardapio inicial");
   }
 

@@ -1,8 +1,13 @@
 .back {
-  background: linear-gradient(to top, rgba(10, 110, 115, 0.3) 35%, rgba(10, 110, 115, 0.1) 85%);
+  background: linear-gradient(to right, transparent 15%, rgba(10, 110, 115, 0.1) 35%, transparent 85%);
   height: 100vh;
   position: relative;
-  padding: 0;
+  padding-bottom: 30vh;
+}
+
+p {
+  font-size: 1.2vh;
+  text-decoration: underline;
 }
 
 .marcar {
@@ -35,48 +40,21 @@
   text-align: center;
 }
 
-.banner-lateral-direita {
-  right: 0;
-}
+@media (max-width: 1024px) and (max-height: 768px) {
+  .back {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 30vh;
+  }
 
-.banner-lateral-esquerda {
-  left: 0;
-}
-
-.banner-lateral-esquerda,
-.banner-lateral-direita {
-  position: absolute;
-  overflow-y: hidden;
-  text-align: justify;
-  display: flex;
-  top: 0;
-  bottom: 0;
-  width: 18%;
-  padding: 10px;
-  background-image: linear-gradient(to bottom, rgba(85, 103, 130, 0.1), rgba(76, 127, 146, 0.1),
-      rgba(85, 151, 150, 0.3), rgba(121, 171, 143, 0.3), rgba(172, 187, 138, 0.3));
-}
-
-.banner-lateral-esquerda div,
-.banner-lateral-direita div {
-  margin-top: 8vh;
-  padding: 10px;
-}
-
-.banner-lateral-esquerda img,
-.banner-lateral-direita img {
-  height: 100px;
-  width: 100px;
-  text-align: center;
+  .login {
+    min-width: 200%;
+    margin-left: -50%;
+  }
 }
 
 /* Em telas muito pequenas, os banners podem desaparecer para dar mais espaço ao conteúdo */
 @media (max-height: 767px) {
-  .banner-lateral-esquerda,
-  .banner-lateral-direita {
-    display: none;
-    /* Esconde os banners */
-  }
   .back {
     width: 100%;
     height: 100%;
@@ -91,13 +69,6 @@
 
 /* Em telas muito pequenas, os banners podem desaparecer para dar mais espaço ao conteúdo */
 @media (max-width: 1023px) {
-
-  .banner-lateral-esquerda,
-  .banner-lateral-direita {
-    display: none;
-    /* Esconde os banners */
-  }
-
   .back {
     width: 100%;
     height: 100%;

@@ -4,7 +4,8 @@
   position: fixed;
   width: 100%;
   z-index: 999;
-  background-color: rgba(255, 255, 255, 0);
+  background: white;
+  clip-path: polygon(100% 0, 100% 100%, 89% 83%, 75% 75%, 58% 69%, 42% 69%, 25% 75%, 11% 83%, 0 100%, 0 0);
 }
 
 a.active {
@@ -12,7 +13,6 @@ a.active {
 }
 
 
-.btn-arredondamento{
+.btn-arredondamento {
   border-radius: 20px;
 }
-

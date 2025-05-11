@@ -3,12 +3,33 @@
   font-family: "Times New Roman", Times, serif;
 }
 
+
 hr {
   height: 1px;
   border: none;
   background: linear-gradient(to right, transparent 15%, #00000079, transparent 85%);
   margin: 40px 0;
 }
+
+.custom-shape-divider-bottom-1746934236 {
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1746934236 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1746934236 .shape-fill {
+    fill: #FFFFFF;
+}
+
 
 .btn-estilo {
   --black: black;

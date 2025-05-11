@@ -3,6 +3,7 @@ import {Cardapio} from "../../app-core/model/Cardapio";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CardapioService} from "../../app-core/servicos/cardapio-service";
 import swal from "sweetalert2";
+import * as AOS from 'aos';
 
 declare var $: any;
 
@@ -34,6 +35,10 @@ export class CardapioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+        AOS.init({
+          duration: 1000,
+          once: true // para rodar a animação só uma vez
+        });
     this.listarCardapios();
   }
 

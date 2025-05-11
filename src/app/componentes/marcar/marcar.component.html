@@ -1,7 +1,7 @@
 <div class="back">
 
   <!-- Banner esquerdo -->
-  <div class="banner-lateral-esquerda" style="left: 0;">
+  <div class="banner-lateral-esquerda">
     <div>
       <div class="icone">
         <img src="../../../assets/exclamationP.png" alt="">
@@ -17,9 +17,10 @@
   <!-- Conteúdo Central -->
   <section class="marcar col-md-12">
     <div class="col-md-8">
-      <h1 class="text-center mt-5 title">Insira as informações abaixo <br> para realizar o agendamento do almoço:</h1>
+      <h1 class="text-center mt-5 title">Insira as informações abaixo:
+      </h1>
       <div class="col-md-6 offset-md-3">
-        <div class="login mt-4 p-4 container border rounded border-dark login-blur">
+        <div class="login mt-4 p-4 container login-blur">
           <form [formGroup]="formularioMarcacao" (ngSubmit)="salvarMarcacao()">
             <div class="form-row">
 
@@ -51,7 +52,7 @@
                   <option value="Colaborador">Colaborador</option>
                   <option value="Residente">Residente</option>
                   <option value="Aluno">Aluno</option>
-                  <option value="Aluno">Outros</option>
+                  <option value="Outros">Outros</option>
                 </select>
                 <div class="text-danger" *ngIf="isCampovalido('tipo')">
                   Campo Obrigatório!
@@ -87,7 +88,7 @@
         </div>
       </div>
 
-      <div class="base text-center pt-2">
+      <div class="base py-4">
         <h5>
           <b><u>Horário para agendamento do almoço: 06:00h às 09:30h.</u></b>
         </h5>
@@ -97,7 +98,7 @@
   </section>
 
   <!-- Banner direito -->
-  <div class="banner-lateral-direita" style="right: 0;">
+  <div class="banner-lateral-direita">
     <div>
       <div class="icone">
         <img src="../../../assets/exclamationP.png" alt="">
